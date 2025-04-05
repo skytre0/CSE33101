@@ -1,0 +1,13 @@
+Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)
+comb_sort,ascending,1m,154.15,15.54
+comb_sort,descending,1m,200.05,15.56
+comb_sort,random,1m,421.35,15.53
+comb_sort,part-random,1m,408.09,15.55
+introsort,ascending,1m,519.90,15.60
+introsort,descending,1m,520.26,15.64
+introsort,random,1m,277.52,15.64
+introsort,part-random,1m,292.10,15.63
+heap_sort,ascending,1m,436.08,10.76
+heap_sort,descending,1m,430.82,10.74
+heap_sort,random,1m,498.31,10.75
+heap_sort,part-random,1m,493.44,10.76

@@ -1,0 +1,5 @@
+Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)
+tim_sort,ascending,1m,2.82,15.55
+tim_sort,descending,1m,3.59,15.53
+tim_sort,random,1m,396.69,20.92
+tim_sort,part-random,1m,302.81,20.71
