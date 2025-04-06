@@ -7,104 +7,115 @@
 
 using namespace std;
 
-int num;
 vector<int> v;
 vector<int> tmp;
 vector<bool> mark;
 int input_num, lim;
+auto bin_checker = std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - chrono::steady_clock::now()).count();
+auto ex_checker = std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - chrono::steady_clock::now()).count();
+auto insert_checker = std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - chrono::steady_clock::now()).count();
 auto time_start = chrono::steady_clock::now();
 
 
 int binary(int start, int endpoint, int target) {
     int mid = (start + endpoint) / 2;
     while (start <= endpoint) {
-        mid = (start + endpoint) / 2;        // 계속 start = true 유도할 것
-        if (mark[mid] == false) {
-            if (mid-1 > 0 && tmp[mid-1] < target)
-                start = mid+1;
+        mid = (start + endpoint) / 2;
+        if (!mark[mid]) {           // 같으면 탈출 가능 = 1회 덜 시도
+            if (mid > start)
+                mid--;
+            else if (mid < endpoint)
+                mid++;
             else
-                endpoint = mid-1;
+                return start;
         }
-        else {
-            if (tmp[mid] < target)
-                start = mid+1;
-            else
-                endpoint = mid-1;
-        }
+        if (tmp[mid] < target)
+            start = mid+1;
+        else
+            endpoint = mid-1;
+        
+        // if (!mark[mid]) {
+        //     if (mid-1 > 0 && tmp[mid-1] < target)
+        //         start = mid+1;
+        //     else
+        //         endpoint = mid-1;
+        // }
+        // else {
+        //     if (tmp[mid] < target)
+        //         start = mid+1;
+        //     else
+        //         endpoint = mid-1;
+        // }
     }
-    // if (start > input_num*2-1)
-    //     start = input_num*2-1;
     return start;
 }
 
 int extend(int start, int lim) {
     if (start == lim)
         start--;
-    int left = start;
-    int right = start;
     int found;
+    int dist = (start % 2 ? 0 : 1);
     while (true) {
-        if (left > 0 && mark[left] == false) {
-            found = left;
+        if (start+dist < lim && !mark[start+dist]) {
+            found = start+dist;
             break;
         }
-        if (right < lim && mark[right] == false) {
-            found = right;
+        if (start-dist > 0 && !mark[start-dist]) {
+            found = start-dist;
             break;
         }
-        left--;
-        right++;
+        dist+=2;
     }
     return found;
 }
 
+void insertion(int mid, int canput, int new_insert) {
+    mark[canput] = true;
+    if (canput < mid) {
+        while (canput < mid-1) {
+            tmp[canput] = tmp[canput+1];
+            canput++;
+        }
+    }
+    else if (canput != mid) {
+        while (canput > mid) {
+            tmp[canput] = tmp[canput-1];
+            canput--;
+        }
+    }
+    tmp[canput] = new_insert;
+    return;
+}
 
 // since we need to shift numbers behind the new insertion
 void lib() {
     mark[0] = true;
     input_num = 1;
-    lim = min(input_num*2, (int)v.size());
+    lim = 2;
     while (input_num < lim) {
-        for (int j = input_num*2-1; j > 0; j-=2) {
+        for (int j = (input_num << 1)-1; j > 0; j-=2) {
             mark[j] = false;
             mark[j-1] = true;
             tmp[j-1] = tmp[j/2];
         }
         
         for (int j = input_num; j < lim; j++) { // search for place to insert
-            int put = v[j];
-            int mid = binary(1, input_num*2-1, put);
-            int canput = extend(mid, input_num*2);
-            // tmp[canput] = put;
-            mark[canput] = true;
-            if (canput < mid) {
-                while (canput < mid-1) {
-                    tmp[canput] = tmp[canput+1];
-                    canput++;
-                }
-            }
-            else if (canput != mid) {
-                while (canput > mid) {
-                    tmp[canput] = tmp[canput-1];
-                    canput--;
-                }
-            }
-            tmp[canput] = put;
+            bin_checker -= std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
+            int mid = binary(1, (input_num << 1)-1, v[j]);
+            bin_checker += std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
 
-            // insertion sort
-            // while (canput+1 < input_num*2 && mark[canput+1] != false && tmp[canput] > tmp[canput+1]) {
-            //     iter_swap(tmp.begin() + canput, tmp.begin() + canput+1);
-            //     canput++;
-            // }
-            // while (canput-1 > 0 && mark[canput-1] != false && tmp[canput-1] > tmp[canput]) {
-            //     iter_swap(tmp.begin() + canput-1, tmp.begin() + canput);
-            //     canput--;
-            // }
+            ex_checker -= std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
+            int canput = extend(mid, (input_num << 1));
+            ex_checker += std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
+
+            insert_checker -= std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
+            insertion(mid, canput, v[j]);
+            insert_checker += std::chrono::duration<double, std::milli>(chrono::steady_clock::now() - time_start).count();
 
         }
 
         input_num = lim;
-        lim = min(input_num*2, (int)v.size());
+        lim = min((input_num << 1), (int)v.size());
 
     }
 
@@ -132,6 +143,7 @@ int main(int argc, char* argv[]) {
     // made padding space at v[0] for sorting.
     v.reserve(1000005);
     v.push_back(0);
+    int num;
     while (file >> num) {
         v.push_back(num);
     }
@@ -164,7 +176,7 @@ int main(int argc, char* argv[]) {
         cout << "sorted\n";
     else
         cout << "at " << out << " unsorted\n";
-
+    cout << bin_checker << ", " << ex_checker << ", " << insert_checker << "\n";
     // ofstream out_file(argv[2], ios::app);
     // if (!out_file) {
     //     cerr << "wrong output file behind\n";
@@ -176,3 +188,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
