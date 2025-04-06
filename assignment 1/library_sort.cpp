@@ -12,6 +12,8 @@ vector<int> v;
 vector<int> tmp;
 vector<bool> mark;
 int input_num, lim;
+auto time_start = chrono::steady_clock::now();
+
 
 int binary(int start, int endpoint, int target) {
     int mid = (start + endpoint) / 2;
@@ -20,32 +22,24 @@ int binary(int start, int endpoint, int target) {
         if (mark[mid] == false) {
             if (mid-1 > 0 && tmp[mid-1] < target)
                 start = mid+1;
-            else if (mid-1 > 0 && tmp[mid-1] > target)
-                endpoint = mid-3;
-            else if (mid+1 < lim && tmp[mid+1] < target)
-                start = mid+3;
             else
                 endpoint = mid-1;
         }
         else {
-            if (tmp[mid] < target) {
-                if (mid+1 < lim && mark[mid+1] != false)
-                    start = mid+1;
-                else
-                    start = mid+2;
-            }
-            else {
-                if (mid-1 > 0 && mark[mid-1] != false)
-                    endpoint = mid-1;
-                else
-                    endpoint = mid-2;
-            }
+            if (tmp[mid] < target)
+                start = mid+1;
+            else
+                endpoint = mid-1;
         }
     }
-    return mid;
+    // if (start > input_num*2-1)
+    //     start = input_num*2-1;
+    return start;
 }
 
 int extend(int start, int lim) {
+    if (start == lim)
+        start--;
     int left = start;
     int right = start;
     int found;
@@ -54,7 +48,7 @@ int extend(int start, int lim) {
             found = left;
             break;
         }
-        else if (right < lim && mark[right] == false) {
+        if (right < lim && mark[right] == false) {
             found = right;
             break;
         }
@@ -67,70 +61,59 @@ int extend(int start, int lim) {
 
 // since we need to shift numbers behind the new insertion
 void lib() {
-    tmp.push_back(0);
-    mark.push_back(true);
+    mark[0] = true;
     input_num = 1;
     lim = min(input_num*2, (int)v.size());
-    for ( ; input_num < lim; ) {
-        //initialize tmp & mark
-        vector<int> new_tmp = {};       // changed from insert due to time issue
-        vector<bool> new_mark = {};
-        new_tmp.resize(tmp.size() * 2, 0);
-        new_mark.resize(mark.size() * 2, false);
-
-        for (int j = 0; j < input_num; j++) {
-            new_tmp[j*2] = tmp[j];
-            new_mark[j*2] = mark[j];
+    while (input_num < lim) {
+        for (int j = input_num*2-1; j > 0; j-=2) {
+            mark[j] = false;
+            mark[j-1] = true;
+            tmp[j-1] = tmp[j/2];
         }
-        tmp.swap(new_tmp);
-        mark.swap(new_mark);
-
-        // for (int j = 0; j < input_num*2; j += 2) {
-        //     if (mark[j+1] == true) {
-        //         tmp.insert(tmp.begin() + j+1, 0);
-        //         mark.insert(mark.begin() + j+1, false);     // 공간 없으면 제공함
-        //     }
-        // }
         
         for (int j = input_num; j < lim; j++) { // search for place to insert
             int put = v[j];
             int mid = binary(1, input_num*2-1, put);
             int canput = extend(mid, input_num*2);
-            tmp[canput] = put;
+            // tmp[canput] = put;
             mark[canput] = true;
+            if (canput < mid) {
+                while (canput < mid-1) {
+                    tmp[canput] = tmp[canput+1];
+                    canput++;
+                }
+            }
+            else if (canput != mid) {
+                while (canput > mid) {
+                    tmp[canput] = tmp[canput-1];
+                    canput--;
+                }
+            }
+            tmp[canput] = put;
 
             // insertion sort
-            while (canput+1 <= input_num*2-1 && mark[canput+1] != false && tmp[canput] > tmp[canput+1]) {
-                iter_swap(tmp.begin() + canput, tmp.begin() + canput+1);
-                canput++;
-            }
-            while (canput-1 > 0 && mark[canput-1] != false && tmp[canput-1] > tmp[canput]) {
-                iter_swap(tmp.begin() + canput-1, tmp.begin() + canput);
-                canput--;
-            }
+            // while (canput+1 < input_num*2 && mark[canput+1] != false && tmp[canput] > tmp[canput+1]) {
+            //     iter_swap(tmp.begin() + canput, tmp.begin() + canput+1);
+            //     canput++;
+            // }
+            // while (canput-1 > 0 && mark[canput-1] != false && tmp[canput-1] > tmp[canput]) {
+            //     iter_swap(tmp.begin() + canput-1, tmp.begin() + canput);
+            //     canput--;
+            // }
+
         }
-        
-        // upgrade
+
         input_num = lim;
         lim = min(input_num*2, (int)v.size());
 
     }
 
-
-    // remove the blank = initialiize v -> just change all v[i] -> can do -> put if true
     int cnt = 1;
-    for (size_t i = 1; i < tmp.size(); i++) {
+    for (size_t i = 1; i < v.size()*2; i++) {
         if (mark[i] == true) {
             v[cnt++] = tmp[i];
         }
     } 
-    // for (size_t i = 1; i < tmp.size(); i++) {
-    //     if (mark[i] == false) {
-    //         tmp.erase(tmp.begin() + i);
-    //         mark.erase(mark.begin() + i);
-    //     }
-    // } 
-    // v.swap(tmp);
     return;
 }
 
@@ -152,10 +135,12 @@ int main(int argc, char* argv[]) {
     while (file >> num) {
         v.push_back(num);
     }
+    tmp.resize(v.size() * 2, 0);
+    mark.resize(v.size() * 2, false);
     file.close();
     
     // start time calcuation from now
-    auto time_start = chrono::steady_clock::now();
+    time_start = chrono::steady_clock::now();
 
     // number of inputs = v.size() - 1 due to padding space
     lib();
@@ -167,18 +152,18 @@ int main(int argc, char* argv[]) {
     // 측정된 시간을 특정 형식으로 표준 출력에 출력
     cout << "ALGORITHM_TIME_MS:" << std::fixed << std::setprecision(2) <<  time_duration << "\n";
 
-    // int out = 0;
-    // for (int i = 1; i < check_size; i++) {
-    //     if (v[i] > v[i+1]) {
-    //         out = i;
-    //         cout << v[i] << " > " << v[i+1] << "\n";
-    //         break;
-    //     }
-    // }
-    // if (!out)
-    //     cout << "sorted\n";
-    // else
-    //     cout << "at " << out << " unsorted\n";
+    int out = 0;
+    for (size_t i = 1; i < v.size()-1; i++) {
+        if (v[i] > v[i+1]) {
+            out = i;
+            cout << i << " : " << v[i] << " > " << v[i+1] << "\n";
+            // break;
+        }
+    }
+    if (!out)
+        cout << "sorted\n";
+    else
+        cout << "at " << out << " unsorted\n";
 
     // ofstream out_file(argv[2], ios::app);
     // if (!out_file) {
@@ -191,9 +176,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
-
-
-
-// references : M. A. Bender, M. Farach-Colton, and M. A. Mosteiro. Insertion sort is o (n log n). Theory of Computing systems, 39:391–397, 2006.
-// https://www.researchgate.net/publication/266703295_Insertion_Sort_is_On_log_n

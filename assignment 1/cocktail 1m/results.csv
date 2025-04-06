@@ -1,6 +1,0 @@
-Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)
-cocktail_shaker_sort,ascending,1m,878539.98,23.59
-cocktail_shaker_sort,descending,1m,3922239.91,24.63
-cocktail_shaker_sort,random,1m,2733856.50,24.39
-cocktail_shaker_sort,part-random,1m,2476789.54,24.31
-tournament_sort,ascending,1m,117.94,41.57

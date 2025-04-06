@@ -138,13 +138,13 @@ int main() {
             // "./tim_sort", 
             // "./cocktail_shaker_sort",
             // "./tournament_sort",
-        "./selection_sort",
+            // "./selection_sort",
             // "./comb_sort",
-        "./insertion_sort",
+            // "./insertion_sort",
             // "./introsort",
+            // "./quick_sort",
         "./library_sort",
             // "./heap_sort",
-        "./quick_sort",
             // "./merge_sort"
     };
 
@@ -162,13 +162,13 @@ int main() {
         // "descending-100k.txt",
         // "random-100k.txt",
         // "part-random-100k.txt", 
-        "ascending-1m.txt",
-        "descending-1m.txt",
+        // "ascending-1m.txt",
+        // "descending-1m.txt",
         "random-1m.txt",
         "part-random-1m.txt"
     };
 
-    const int n = 5;  // 실행 반복 횟수
+    const int n = 10;  // 실행 반복 횟수
 
     // 결과 디렉토리 생성
     std::string output_dir = "results_" + std::to_string(

@@ -1,5 +1,0 @@
-Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)
-bubble_sort,ascending,1m,866266.98,24.05
-bubble_sort,descending,1m,3745935.18,23.18
-bubble_sort,random,1m,3106567.39,25.09
-bubble_sort,part-random,1m,2790933.31,23.46

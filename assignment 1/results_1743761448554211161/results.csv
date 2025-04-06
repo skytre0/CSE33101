@@ -1,8 +1,0 @@
-Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)
-selection_sort,ascending,1m,1359181.93,18.69
-selection_sort,descending,1m,1453108.62,19.31
-selection_sort,random,1m,1298119.00,18.41
-selection_sort,part-random,1m,1270213.13,17.89
-insertion_sort,ascending,1m,2.41,10.73
-insertion_sort,descending,1m,3441473.77,19.33
-insertion_sort,random,1m,1808207.55,19.28

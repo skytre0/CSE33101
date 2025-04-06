@@ -18,6 +18,7 @@ vector<int> save;        // 숫자 1개로 size 표시함
 vector<int> tmp;
 int save_pos = 1;
 
+
 int binary(vector<int>& v, int start, int endpoint, int target) {
     int mid = (start + endpoint) / 2;
     while (start <= endpoint) {
