@@ -13,16 +13,21 @@ vector<int> v;
 
 
 void downheap(int index, int heap_size, int diff) {
-    int larger = index;
-    int left = (index - diff) * 2 + diff;
-    int right = left + 1;
-    if (left <= heap_size && v[index] < v[left])
-        larger = left;
-    if (right <= heap_size && v[larger] < v[right])
-        larger = right;
-    if (larger != index) {
-        iter_swap(v.begin() + index, v.begin() + larger);
-        downheap(larger, heap_size, diff);
+    while (true) {
+        int larger = index;
+        int left = (index - diff) * 2 + diff;
+        int right = left + 1;
+        if (left <= heap_size && v[index] < v[left])
+            larger = left;
+        if (right <= heap_size && v[larger] < v[right])
+            larger = right;
+        if (larger != index) {
+            iter_swap(v.begin() + index, v.begin() + larger);
+            // downheap(larger, heap_size, diff);
+            index = larger;
+        }
+        else
+            break;
     }
 }
 
@@ -125,7 +130,7 @@ int main(int argc, char* argv[]) {
     cout << "ALGORITHM_TIME_MS:" << std::fixed << std::setprecision(2) <<  time_duration << "\n";
     
         // int out = 0;
-        // for (int i = 1; i < check_size; i++) {
+        // for (size_t i = 1; i < v.size()-1; i++) {
         //     if (v[i] > v[i+1]) {
         //         out = i;
         //         cout << v[i] << " > " << v[i+1] << "\n";

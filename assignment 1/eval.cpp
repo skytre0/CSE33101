@@ -143,29 +143,29 @@ int main() {
             // "./insertion_sort",
             // "./introsort",
             // "./quick_sort",
-        "./library_sort",
+            // "./library_sort",
             // "./heap_sort",
             // "./merge_sort"
     };
 
     // 입력 파일 목록 (단일 인자)
     std::vector<std::string> input_args = {
-        "ascending-1k.txt",
-        "descending-1k.txt",
-        "random-1k.txt",
-        "part-random-1k.txt", 
-        "ascending-10k.txt",
-        "descending-10k.txt",
-        "random-10k.txt",
-        "part-random-10k.txt", 
-        "ascending-100k.txt",
-        "descending-100k.txt",
-        "random-100k.txt",
-        "part-random-100k.txt", 
+        // "ascending-1k.txt",
+        // "descending-1k.txt",
+        // "random-1k.txt",
+        // "part-random-1k.txt", 
+        // "ascending-10k.txt",
+        // "descending-10k.txt",
+        // "random-10k.txt",
+        // "part-random-10k.txt", 
+        // "ascending-100k.txt",
+        // "descending-100k.txt",
+        // "random-100k.txt",
+        // "part-random-100k.txt", 
         // "ascending-1m.txt",
         // "descending-1m.txt",
-        "random-1m.txt",
-        "part-random-1m.txt"
+        // "random-1m.txt",
+        // "part-random-1m.txt"
     };
 
     const int n = 10;  // 실행 반복 횟수

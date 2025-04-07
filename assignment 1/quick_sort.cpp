@@ -81,18 +81,18 @@ int main(int argc, char* argv[]) {
     // 측정된 시간을 특정 형식으로 표준 출력에 출력
     cout << "ALGORITHM_TIME_MS:" << std::fixed << std::setprecision(2) <<  time_duration << "\n";
 
-    // int out = 0;
-    // for (int i = 1; i < check_size; i++) {
-    //     if (v[i] > v[i+1]) {
-    //         out = i;
-    //         cout << v[i] << " > " << v[i+1] << "\n";
-    //         break;
-    //     }
-    // }
-    // if (!out)
-    //     cout << "sorted\n";
-    // else
-    //     cout << "at " << out << " unsorted\n";
+    int out = 0;
+    for (size_t i = 1; i < v.size()-1; i++) {
+        if (v[i] > v[i+1]) {
+            out = i;
+            cout << v[i] << " > " << v[i+1] << "\n";
+            break;
+        }
+    }
+    if (!out)
+        cout << "sorted\n";
+    else
+        cout << "at " << out << " unsorted\n";
 
     // ofstream out_file(argv[2], ios::app);
     // if (!out_file) {
