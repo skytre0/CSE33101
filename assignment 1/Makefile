@@ -36,4 +36,4 @@ tim_sort:	tim_sort.o
 	g++ -c -o $@ $< $(CXXFLAGS)
 
 clean:
-	rm -f merge_sort heap_sort bubble_sort insertion_sort selection_sort quick_sort *.o
+	rm -f eval merge_sort heap_sort bubble_sort insertion_sort selection_sort quick_sort tournament_sort comb_sort cocktail_shaker_sort introsort library_sort tim_sort *.o
