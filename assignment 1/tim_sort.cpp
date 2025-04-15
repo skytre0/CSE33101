@@ -332,6 +332,7 @@ int main(int argc, char* argv[]) {
     }
 
     // made padding space at v[0] for sorting.
+    v.reserve(1000005);
     v.push_back(0);
     while (in_file >> num) {
         v.push_back(num);
