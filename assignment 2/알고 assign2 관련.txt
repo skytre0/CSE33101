@@ -1,0 +1,12 @@
+1. basic_HK : coor 개수 25까지가 한계 -> 26하니까 kill됨.
+
+
+
+k-opt search 방법도 존재, 사이클-캔슬링 -> 비효율적(거리에 시간 의존)
+
+
+
+메모리 & 시간 확인용 -> 정확히는 oom 메모리 한계 확인함.
+/usr/bin/time -v ./basic_CH ./tsp_dataset/mona-lisa100K.tsp 0 100000
+
+최적화 성공 -> pq -> array -> vector

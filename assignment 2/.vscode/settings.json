@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "chrono": "cpp",
+        "limits": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "iomanip": "cpp",
+        "iosfwd": "cpp",
+        "random": "cpp",
+        "valarray": "cpp",
+        "tuple": "cpp"
+    }
+}
