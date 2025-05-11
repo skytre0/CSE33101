@@ -10,6 +10,7 @@
 #include <numeric>
 #include <filesystem>
 #include <csignal>
+#include <sys/wait.h>
 
 namespace fs = std::filesystem;
 
@@ -25,9 +26,9 @@ std::vector<std::string> programs = {
 
 std::vector<std::string> tsp_files = {
     "a280.tsp",
-    // "xql662.tsp",
-    // "kz9976.tsp",
-    // "mona-lisa100K.tsp"
+    "xql662.tsp",
+    "kz9976.tsp",
+    "mona-lisa100K.tsp"
 };
 
 std::string tsp_dir = "./tsp_dataset/";

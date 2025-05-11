@@ -132,9 +132,9 @@ int main(int argc, char* argv[]) {
     cout << "Number of inputs (used): " << actual_count << "\n";
     cout << "Start index: " << start_index << "\n";
     cout << "Vector size: " << v.size() << "\n";
-    for (size_t i = 0; i < std::min(v.size(), size_t(5)); ++i) {
-        cout << v[i].x << " " << v[i].y << "\n";
-    }
+    // for (size_t i = 0; i < std::min(v.size(), size_t(5)); ++i) {
+    //     cout << v[i].x << " " << v[i].y << "\n";
+    // }
     return 0;
 }
 
@@ -144,36 +144,36 @@ double get_dist(coor& a, coor& b) {
     return sqrt(dx * dx + dy * dy);
 }
 
+
 vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     double sum = 0;
     vector<pair<coor, coor>> ans;
 
-    // vector 이용한 최적화
-    /**/
+    // memory 최적화 : tuple<double, coor, coor> -> tuple<double, int, int>로 감소시킴.
     const double INF = numeric_limits<double>::max();
-    vector<tuple<double, coor, coor>> pv(num, make_tuple(INF, coor{0, 0, 0}, coor{0, 0, 0}));
+    vector<tuple<double, int, int>> pv(num, make_tuple(INF, 0, 0));
 
     // 전처리 -> 원하는 target만 남기기 = get<2>().index로 접근하기 위함
     for (int i = 0; i < num; i++)
-        get<2>(pv[i]) = v[i];
+        get<2>(pv[i]) = i;
 
-    coor new_pos = v[0];
-    m[new_pos] = 1;
+    int new_pos = 0;
+    m[v[new_pos]] = 1;
 
     while ((int)ans.size() < num-1) {
         int mindex = 0;     // index of smallest & padding space for keeping INF
         for (int i = 1; i < (int)pv.size(); i++) {
-            if (get<0>(pv[i]) > get_dist(new_pos, get<2>(pv[i]))) 
-                pv[i] = {get_dist(new_pos, get<2>(pv[i])), new_pos, get<2>(pv[i])};
+            if (get<0>(pv[i]) > get_dist(v[new_pos], v[get<2>(pv[i])])) 
+                pv[i] = {get_dist(v[new_pos], v[get<2>(pv[i])]), new_pos, get<2>(pv[i])};
             
             if (get<0>(pv[mindex]) > get<0>(pv[i]))
                 mindex = i;
         }
-        ans.push_back({get<1>(pv[mindex]), get<2>(pv[mindex])});
+        ans.push_back({v[get<1>(pv[mindex])], v[get<2>(pv[mindex])]});
         // console << ans.size() << " : " << get<1>(pv[mindex]).x << " " << get<1>(pv[mindex]).y << " <=> " << get<2>(pv[mindex]).x << " " << get<2>(pv[mindex]).y << "\n" << flush;
         sum += get<0>(pv[mindex]);
-        m[get<1>(pv[mindex])]++;
-        m[get<2>(pv[mindex])]++;
+        m[v[get<1>(pv[mindex])]]++;
+        m[v[get<2>(pv[mindex])]]++;
         new_pos = get<2>(pv[mindex]);
         pv[mindex] = pv[pv.size()-1];
         pv.pop_back();
@@ -185,12 +185,14 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     return ans;
 }
 
+
 // vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);
 
 
 double basic_CH(int num, vector<coor>& v) {
     map<coor, int> m;        // to check if number of nodes linked is odd & save memory -> exchange, time consuming
     vector<pair<coor, coor>> mst = prim(num, v, m);
+    // vector<pair<coor, coor>> mst = memprim(num, v, m);
     // anotherprim(num, v, m);
     // console << mst.size() << " = " << num-1 << "\n";
     // for (int i = 0; i < num-1; i++) {
@@ -203,7 +205,7 @@ double basic_CH(int num, vector<coor>& v) {
 
 
 /*
-//for debugging -> made by AI
+// for debugging -> modified by AI + use pq -> useful in sparse graph = not good for tsp
 vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m) {
     vector<pair<coor, coor>> mst_edges;
     vector<bool> in_mst(num, false);
@@ -254,6 +256,48 @@ vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m
 
 /* 
 prim record
+
+vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
+    double sum = 0;
+    vector<pair<coor, coor>> ans;
+
+    // vector 이용한 최적화
+    const double INF = numeric_limits<double>::max();
+    vector<tuple<double, coor, coor>> pv(num, make_tuple(INF, coor{0, 0, 0}, coor{0, 0, 0}));
+
+    // 전처리 -> 원하는 target만 남기기 = get<2>().index로 접근하기 위함
+    for (int i = 0; i < num; i++)
+        get<2>(pv[i]) = v[i];
+
+    coor new_pos = v[0];
+    m[new_pos] = 1;
+
+    while ((int)ans.size() < num-1) {
+        int mindex = 0;     // index of smallest & padding space for keeping INF
+        for (int i = 1; i < (int)pv.size(); i++) {
+            if (get<0>(pv[i]) > get_dist(new_pos, get<2>(pv[i]))) 
+                pv[i] = {get_dist(new_pos, get<2>(pv[i])), new_pos, get<2>(pv[i])};
+            
+            if (get<0>(pv[mindex]) > get<0>(pv[i]))
+                mindex = i;
+        }
+        ans.push_back({get<1>(pv[mindex]), get<2>(pv[mindex])});
+        // console << ans.size() << " : " << get<1>(pv[mindex]).x << " " << get<1>(pv[mindex]).y << " <=> " << get<2>(pv[mindex]).x << " " << get<2>(pv[mindex]).y << "\n" << flush;
+        sum += get<0>(pv[mindex]);
+        m[get<1>(pv[mindex])]++;
+        m[get<2>(pv[mindex])]++;
+        new_pos = get<2>(pv[mindex]);
+        pv[mindex] = pv[pv.size()-1];
+        pv.pop_back();
+
+    }
+    m[v[0]]--;  
+    console << sum << "\n" << flush;    
+
+    return ans;
+}
+
+
 
 vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     double sum = 0;
