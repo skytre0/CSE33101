@@ -145,12 +145,13 @@ double get_dist(coor& a, coor& b) {
 }
 
 vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
+    double sum = 0;
     vector<pair<coor, coor>> ans;
 
     // vector 이용한 최적화
     /**/
     const double INF = numeric_limits<double>::max();
-    vector<tuple<double, coor, coor>> pv(num+1, make_tuple(INF, coor{0, 0, 0}, coor{0, 0, 0}));
+    vector<tuple<double, coor, coor>> pv(num, make_tuple(INF, coor{0, 0, 0}, coor{0, 0, 0}));
 
     // 전처리 -> 원하는 target만 남기기 = get<2>().index로 접근하기 위함
     for (int i = 0; i < num; i++)
@@ -170,6 +171,7 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
         }
         ans.push_back({get<1>(pv[mindex]), get<2>(pv[mindex])});
         // console << ans.size() << " : " << get<1>(pv[mindex]).x << " " << get<1>(pv[mindex]).y << " <=> " << get<2>(pv[mindex]).x << " " << get<2>(pv[mindex]).y << "\n" << flush;
+        sum += get<0>(pv[mindex]);
         m[get<1>(pv[mindex])]++;
         m[get<2>(pv[mindex])]++;
         new_pos = get<2>(pv[mindex]);
@@ -178,11 +180,86 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
 
     }
     m[v[0]]--;  
-    
+    console << sum << "\n" << flush;    
 
+    return ans;
+}
+
+// vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);
+
+
+double basic_CH(int num, vector<coor>& v) {
+    map<coor, int> m;        // to check if number of nodes linked is odd & save memory -> exchange, time consuming
+    vector<pair<coor, coor>> mst = prim(num, v, m);
+    // anotherprim(num, v, m);
+    // console << mst.size() << " = " << num-1 << "\n";
+    // for (int i = 0; i < num-1; i++) {
+    //     console << i << " : " << mst[i].first.x << " " << mst[i].first.y << " <=> " << mst[i].second.x << " " << mst[i].second.y << "\n" << flush;
+    // }
+    return 0;
+}
+
+
+
+
+/*
+//for debugging -> made by AI
+vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m) {
+    vector<pair<coor, coor>> mst_edges;
+    vector<bool> in_mst(num, false);
+    vector<double> min_dist(num, numeric_limits<double>::max());
+    vector<int> parent(num, -1);
+
+    // Min-heap: (distance, node_idx, from_idx)
+    using T = tuple<double, int, int>;
+    priority_queue<T, vector<T>, greater<T>> pq;
+
+    min_dist[0] = 0.0;
+    pq.emplace(0.0, 0, -1);
+
+    double sum = 0.0;
+
+    while (!pq.empty()) {
+        auto [cost, u, from] = pq.top();
+        pq.pop();
+        if (in_mst[u]) continue;
+        in_mst[u] = true;
+        sum += cost;
+        if (from != -1) {
+            mst_edges.emplace_back(v[from], v[u]);
+            m[v[from]]++;
+            m[v[u]]++;
+            // console << mst_edges.size() << " : " << v[from].x << " " << v[from].y << " <=> " << v[u].x << " " << v[u].y << "\n" << flush;
+        }
+        for (int v_idx = 0; v_idx < num; ++v_idx) {
+            if (!in_mst[v_idx]) {
+                double d = get_dist(v[u], v[v_idx]);
+                if (d < min_dist[v_idx]) {
+                    min_dist[v_idx] = d;
+                    parent[v_idx] = u;
+                    pq.emplace(d, v_idx, u);
+                }
+            }
+        }
+    }
+
+    // sum에 MST 총 길이가 저장됨
+    console << "MST length: " << sum << endl;
+    return mst_edges;
+}
+
+*/
+
+
+
+/* 
+prim record
+
+vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
+    double sum = 0;
+    vector<pair<coor, coor>> ans;
 
     // pq 없이 try
-    /*
     const double INF = numeric_limits<double>::max();
     tuple<double, coor, coor> pa[num+1];
     fill_n(pa, num+1, make_tuple(INF, coor{0, 0, 0}, coor{0, 0, 0}));
@@ -208,9 +285,8 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
 
     }
     m[v[0]]--;
-*/
-    
-    /*
+
+    return ans;
 
 
     priority_queue<tuple<double, coor, coor>, vector<tuple<double, coor, coor>>, greater<tuple<double, coor, coor>>> pq;
@@ -260,19 +336,10 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     }
     m[v[0]]--;
 
-*/
-    
 
     return ans;
 }
 
-double basic_CH(int num, vector<coor>& v) {
-    map<coor, int> m;        // to check if number of nodes linked is odd & save memory -> exchange, time consuming
-    vector<pair<coor, coor>> mst = prim(num, v, m);
-    // console << mst.size() << " = " << num-1 << "\n";
-    // for (int i = 0; i < num-1; i++) {
-    //     console << i << " : " << mst[i].first.x << " " << mst[i].first.y << " <=> " << mst[i].second.x << " " << mst[i].second.y << "\n" << flush;
-    // }
-    return 0;
-}
 
+
+*/

@@ -8,6 +8,8 @@
         "iosfwd": "cpp",
         "random": "cpp",
         "valarray": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "array": "cpp",
+        "utility": "cpp"
     }
 }
