@@ -21,7 +21,14 @@ struct coor {
         if (y != other.y) return y < other.y;
         return index < other.index;
     }
+    bool operator==(const coor& other) const {
+        return index == other.index;
+    }
+    bool operator!=(const coor& other) const {
+        return !(*this == other);
+}
 };
+const double INF = numeric_limits<double>::max();
 
 double basic_CH(int num, vector<coor>& v);
 double get_dist(coor& a, coor& b);
@@ -150,7 +157,6 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     vector<pair<coor, coor>> ans;
 
     // memory 최적화 : tuple<double, coor, coor> -> tuple<double, int, int>로 감소시킴.
-    const double INF = numeric_limits<double>::max();
     vector<tuple<double, int, int>> pv(num, make_tuple(INF, 0, 0));
 
     // 전처리 -> 원하는 target만 남기기 = get<2>().index로 접근하기 위함
@@ -185,9 +191,192 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     return ans;
 }
 
+struct link {       // coor를 key로 하는 map 사용 고민
+    int pinos;
+    double dual;
+    int depth; 
+    coor cur;
+    int pdx;        // use for search -> since not priority, can't use .top method
+    vector<pair<double, coor>> pl;      // since needed multiple time = pq -> pl in initialize step -> same -> index big+min / minimum -> 7
+    // weight + to_where 구조
+    vector<link*> nl;       // reserve 7 size for number of children -> same as pl
+    link* matched;      // if not, nullptr. 
+    link* before;
+    link* before_ori;       // for blossom
+    link* next_ori;         // for blossom
+    int is_blossom;         // 기본 0, 한 좌표가 계속 blossom에 포함 가능하기에 bool이 아닌 int로
+    bool is_tree;
+    bool operator<(const link& other) const {
+        if (cur != other.cur) return cur < other.cur;
+        if (depth != other.depth) return depth < other.depth;
+        return false;
+    }
+};
+// 사용 link a; a->pdx;  
 
-// vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);
+void initialize(vector<coor>& odds, map<coor, link>& m) {
+    // to not use new & delete -> called m with reference + placing values
+    link* mpy;       // will use in both for loop
+    for (int i = 0; i < (int)odds.size(); i++) {
+        mpy = &m[odds[i]];       // set mpy
+        mpy->pinos = i;
+        mpy->depth = 0;        
+        mpy->cur = odds[i];
+        mpy->pdx = 0;
+        mpy->pl.reserve(7);
+        mpy->nl.reserve(7);
+        mpy->is_blossom = 0;
+        // can also be used to mark ancestor(beginning -> if use as m[odds[is_tree]])
+        mpy->is_tree = -1;       // will later be having index i of odds if included in a tree -> for pq equality
+    }
+    // select 7 highest priority only
+    for (int i = 0; i < (int)odds.size(); i++) {
+        mpy = &m[odds[i]];       // set mpy
+        priority_queue<pair<double, coor>, vector<pair<double, coor>>, greater<pair<double, coor>>> tmpq = {};
+        for (int j = 0; j < (int)odds.size(); j++) {
+            if (i == j) continue;
+            tmpq.emplace(get_dist(odds[i], odds[j]), odds[j]);
+        }
+        // see same coor x/y exists or not
+        if (tmpq.top().first == 0) {
+            pair<double, coor> fp = tmpq.top();
+            while (!tmpq.empty() && tmpq.top().second.index < odds[i].index)    // might only have same x,y coor
+                tmpq.pop();
+            if (tmpq.empty() || tmpq.top().first != 0)
+                mpy->pl.push_back(fp);
+            else {
+                mpy->pl.push_back(tmpq.top());
+                while (!tmpq.empty() || tmpq.top().first == 0)
+                    tmpq.pop();
+            }
+        }
+        // push max 6
+        for (int j = 0; j < 6; j++) {
+            if (tmpq.empty()) break;
+            mpy->pl.push_back(tmpq.top());
+            tmpq.pop();
+        }
+        // set dual variable
+        mpy->dual = mpy->pl[mpy->pdx].first / 2;
+    }
+    return;
+}
 
+void makesimple(vector<coor>& odds, map<coor, link>& m) {
+    int endpos = odds.size();
+    for (int i = 0; i < endpos; ) {
+        link* me = &m[odds[i]];
+        link* another = &m[me->pl[me->pdx].second];
+        // if match available
+        if (another->matched == nullptr && me->dual == another->dual) {
+            // match these two
+            another->matched = me;
+            me->matched = another;
+            // shift these to the back of the odds (since not free node anymore) + also move the endpos(no need to look)
+            swap(odds[me->pinos], odds[--endpos]);
+            m[odds[me->pinos]].pinos = me->pinos;
+            m[odds[endpos]].pinos = endpos;
+
+            swap(odds[another->pinos], odds[--endpos]);
+            m[odds[another->pinos]].pinos = another->pinos;
+            m[odds[endpos]].pinos = endpos;
+        }
+        else i++;       // 이거 최소한의 matching 일단 형성
+    }
+    return;
+}
+
+link* grow();
+void augment();
+void shrink();
+void expand();
+coor nca();
+void clean_tree();// 이 안에 expand 예정
+
+void blossom(vector<coor>& odds, map<coor, link>& m, int free_num) {
+    // single, multiple 등하면 각각 pq 필요함 -> 다음 얻기 위해 = pq가 가리키는 dist, 해당 tree의 element가 뭔지 필요함.
+    // dual variable 한번에 모두 update 예정, delta는 자주 변경 -> delta 변경 1개에 path 확장 1번
+    // 이 priority queue는 dist, coor_in_tree -> pq update 위해서, dist에 결정되면 그냥 해당 coor 가서 하면 되니까
+    priority_queue<pair<double, coor>, vector<pair<double, coor>>, greater<pair<double, coor>>> pqs[free_num] = {};
+    double delta = 0;
+    // put initial mcp
+    for (int i = 0; i < free_num; i++) {
+        pqs[i].emplace(m[odds[i]].pl[m[odds[i]].pdx].first, m[odds[i]].cur);
+    }
+    // loop until augment is made
+    while (1) {
+        int gdx = 0;
+        // choose coor to grow
+        for (int i = 1; i < free_num; i++) {
+            if (pqs[gdx].top().first > pqs[i].top().first) gdx = i;
+        }
+
+        // need delta update here
+
+        link* to_extend = &m[pqs[gdx].top().second];
+        link* target = &m[to_extend->pl[to_extend->pdx].second];
+        pqs[gdx].pop();
+        // not matched = free node = destination
+        if (target->matched == nullptr) {
+            augment();      // flip all edges & reset pinos, dual, depth, pdx, link(matched, before, before_ori, next_ori), is_blossom, is_tree
+            break;
+        }
+        // already matched node + not a tree
+        else {
+            // matched node is not part of the tree
+            if (target->is_tree == -1) {
+                target = grow();        // 직전 target과 matched인 대상(outer)로 target을 바꿈
+                if (target->pl[target->pdx].second == target->matched->cur) target->pdx++;
+                pqs[gdx].emplace(target->pl[to_extend->pdx].first, target->cur);        // 2 since to_extend's next priority + new node's priority
+
+                // 이미 존재하던 node pl 한계일 수 있어서 나중에 확인 -> continue 위해
+                // check if all edges selected / next edge == matched edge -> need to plus = need to check all edges selected again
+                if (++(to_extend->pdx) == 7) continue;
+                if (to_extend->pl[to_extend->pdx].second == to_extend->matched->cur) to_extend->pdx++;
+                if (to_extend->pdx == 7) continue;
+                pqs[gdx].emplace(to_extend->pl[to_extend->pdx].first, to_extend->cur);
+            }
+            // if the matched node already part of my tree
+            else if (to_extend->is_tree == target->is_tree) {
+                coor ncap = nca();
+                // need to make a blossom = odd cycle
+                if ((to_extend->depth + target->depth - (2 * m[ncap].depth) + 1) % 2)
+                    shrink();
+                // else : just ignore and continue = even cycle
+
+                if (++(to_extend->pdx) == 7) continue;
+                if (to_extend->pl[to_extend->pdx].second == to_extend->matched->cur) to_extend->pdx++;
+                if (to_extend->pdx == 7) continue;
+                pqs[gdx].emplace(to_extend->pl[to_extend->pdx].first, to_extend->cur);      // only 1 added due to blossom
+            }
+            // if the matched node is part of another tree
+            else {
+                augment();      // flip all edges & reset pinos, dual, depth, pdx, link(matched, before, before_ori, next_ori), is_blossom, is_tree
+                break;
+            }
+        }
+    }
+    return;
+}
+
+vector<pair<coor, coor>> mwpm(int num, vector<coor>& odds) {
+    map<coor, link> mm;
+    vector<pair<coor, coor>> ans;
+    initialize(odds, mm);
+    // find able right away
+    // makesimple(odds, mm);
+    while (!odds.empty() || (double)odds.size() <= (double)num * 0.05)      // 이거 pq의 memory issue 발생 가능성 생기면 비율이 아니라 고정값으로 변경 예정
+        blossom(odds, mm, 1);
+    while (!odds.empty())
+        blossom(odds, mm, (int)odds.size());
+
+
+    
+    return ans;
+}
+
+
+// vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);       // for debugging
 
 double basic_CH(int num, vector<coor>& v) {
     map<coor, int> m;        // to check if number of nodes linked is odd & save memory -> exchange, time consuming
@@ -198,6 +387,13 @@ double basic_CH(int num, vector<coor>& v) {
     // for (int i = 0; i < num-1; i++) {
     //     console << i << " : " << mst[i].first.x << " " << mst[i].first.y << " <=> " << mst[i].second.x << " " << mst[i].second.y << "\n" << flush;
     // }
+    vector<coor> odds;
+    odds.reserve(num);
+    for (int i = 0; i < num; i++) {
+        if (m[v[i]] % 2 != 0)
+            odds.push_back(v[i]);
+    }
+    vector<pair<coor, coor>> pm = mwpm((int)odds.size(), odds);
     return 0;
 }
 
