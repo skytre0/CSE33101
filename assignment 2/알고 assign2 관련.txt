@@ -4,9 +4,11 @@
 
 k-opt search 방법도 존재, 사이클-캔슬링 -> 비효율적(거리에 시간 의존)
 
-
+dlas 알고리즘
 
 메모리 & 시간 확인용 -> 정확히는 oom 메모리 한계 확인함.
+/usr/bin/time -v ./basic_CH ./tsp_dataset/a280.tsp 0 100000
+
 /usr/bin/time -v ./basic_CH ./tsp_dataset/mona-lisa100K.tsp 0 100000
 
 https://pub.ista.ac.at/~vnk/papers/blossom5.pdf
