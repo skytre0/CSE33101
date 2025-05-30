@@ -267,10 +267,9 @@ void initialize(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>,
         mu->dual = 0;
         mu->treeidx = -1;       // will later be having index i of odds if included in a tree -> for pq equality
         mu->depth = 0;      
-        mu->parent = nullptr;
-        // int vsize = min(mu->el.max_size(), odds.size() * odds.size());    
-        // mu->el.reserve(odds.size() * odds.size());
-        // mu->nl.reserve(odds.size()-1);
+        mu->parent = nullptr;   
+        mu->el.reserve(odds.size() * odds.size());
+        mu->nl.reserve(odds.size()-1);
         // can also be used to mark ancestor(beginning -> if use as m[odds[treeidx]])
     }
     // sort with priority
@@ -561,8 +560,8 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     node* mn;
     vector<edge*> pev = {};
     vector<edge*> mev = {};
-    // pev.reserve(target->nl.size());
-    // mev.reserve(target->nl.size());
+    pev.reserve(target->nl.size());
+    mev.reserve(target->nl.size());
 
     // for (int k = 0; k < (int)target->el.size(); k++)
     //     target->el[k] = edge_update(target->el[k]);
@@ -652,7 +651,7 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
 
     // blossom 구성하는 node들 순서대로 넣을 공간 마련
     vector<node*> cycleseq;
-    // cycleseq.reserve(target->nl.size());
+    cycleseq.reserve(target->nl.size());
 
     // parent + depth 설정 확실하게 해야 함 -> parent와 연결된 대상이 depth 승계(정확히는 odd/even)
     pn->depth = target->depth;
@@ -676,7 +675,7 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     // cycle이 pn에서 시작해서 parent 따라서 내려감 -> 지금 depth 증가 = parent 감소하는 반비례로 이상하다는 점 주의.
     // 어차피 path 이외의 부분은 depth, parent, treeidx 모두 notree에 모은 뒤에 한번에 삭제 예정.
     vector<node*> notree = {};
-    // notree.reserve(cycleseq.size());
+    notree.reserve(cycleseq.size());
 
 
     // pn + mn = odd -> 현재 cycle parent 방향이 맞음 = depth가 이상함
@@ -899,7 +898,7 @@ node* nca(edge* e) {
 
 void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, edge>& me, int& lasttry) {
     vector<node*> btainer;
-    // btainer.reserve((int)odds.size());
+    btainer.reserve(odds.size());
     for (int mnt = 0; mnt < (int)odds.size() / 2; mnt++) {
         int odx = mnt;
         lasttry--;
@@ -908,10 +907,10 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
         
 
         vector<node*> nodes[2] = {};
-        // nodes[0].reserve(odds.size());       // for outer (+)
-        // nodes[1].reserve(odds.size());       // for inner (-)
+        nodes[0].reserve(odds.size());       // for outer (+)
+        nodes[1].reserve(odds.size());       // for inner (-)
         vector<edge*> edges = {};
-        // edges.reserve(odds.size() * odds.size());
+        edges.reserve(odds.size() * odds.size());
 
         double delta;
         edge* e;

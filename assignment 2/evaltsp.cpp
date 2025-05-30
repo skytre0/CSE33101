@@ -21,21 +21,22 @@ using namespace std;
 std::vector<std::string> programs = {
     // "./basic_HK", 
     "./basic_CH"
+    // "./MST2"
     // 필요시 다른 프로그램 추가
 };
 
 std::vector<std::string> tsp_files = {
-    "a280.tsp",
-    "xql662.tsp",
+    // "a280.tsp",
+    // "xql662.tsp",
     "kz9976.tsp",
-    "mona-lisa100K.tsp"
+    // "mona-lisa100K.tsp"
 };
 
 std::string tsp_dir = "./tsp_dataset/";
 std::string result_csv = "eval_tsp_result.csv";
 // 0부터 시작함
 int start_index = 0;
-int num_coor = 100000;
+int num_coor = 1000;
 int repeat = 1; // 반복 횟수
 
 // ======= 구조체 및 유틸 =======

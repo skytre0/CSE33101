@@ -1,10 +1,41 @@
 1. basic_HK : coor 개수 25까지가 한계 -> 26하니까 kill됨.
 
+** optimal tour : 
+a280 : 2586.76964756316
+xql662 : 2513
+kz9976 : 1061882
+mona-lisa100K : 5757084
+
+The instances in the VLSI collection range in size from 131 cities up to 744,710 cities. In these examples, the cost of travel between cities is specified by the Eulidean distance rounded to the nearest whole number (the TSPLIB EUC_2D-norm)
+-> 이에 따라서 dist 계산 방식 변경 필요
 
 
 k-opt search 방법도 존재, 사이클-캔슬링 -> 비효율적(거리에 시간 의존)
 
-dlas 알고리즘
+
+
+나만의 알고리즘 : 
+1단계 : 2D space 상에서 밖에서부터 layer를 나누기 -> capsule 형태 -> monotone chain 알고리즘을 이용해서 convex hull 반복해서 적용할 계획이야.
+convex hall 함수는 hall을 이루는 coor의 vector를 return할 꺼야. 이때, CCW가 0이더라도 pop을 하지 않고, 2개 이하로 남으면 그걸 그대로 return해.
+그렇게 각 layer 별로 vector가 만들어지는데, 그걸 vector<vector<coor>>가 가지고 있을 꺼야.
+2단계 : 모든 node가 layer에 속하게 되었다면, 가장 내부 layer =  vector<vector<coor>>의 end와 가장 가까운 vector일 것이고, 해당 vector를 구성하는 nodes로 tsp 구하기 -> held karp 이용 가능하기도 하고, convex hall에서 lower와 upper를 합치는 것을 잘 했다면 이미 순서대로 정렬 상태 -> dp 불가능할 정도로 많아도 convex hull 구조 = tsp라서 괜찮음
+3단계 : 여기부터 재귀적으로 진행할 것 ->  vector<vector<coor>>가 없어질 때까지
+3-1 : 다음 layer( vector<vector<coor>>의 index-1의 vector)에 속한 node들 대상으로 tsp 확장 예정
+3-2 : tsp 경로에 node를 merge 느낌 예정이라 외부 node와 tsp 상의 node 연결 가능한 것 추려야 함
+-> 이때, tsp = cycle = 외부 node 기준 가까운 변, 먼/반대편 단면 존재 -> cross edge 방지하기 위해서 가까운 단면에 존재하는 node들만 대상으로 할 것 -> 어차피 가까운 것 고르면 알아서 이렇게 될 것으로 보임 -> cross edge 절대 안 나옴 = tsp 경로 최적화에 일부 기여 -> 이때 가까운 단면 = 확률적으로 직전 layer 가능성 높음 -> 외부 node 1개에 대해서 가장 가까운 순서로 tsp 상의 node 최대 10개 선택 -> 이때 외부 node 선택은 각 외부 node와 tsp 경로 상 연결하는 edge 1개가 가장 짧은 것 먼저 하고, 해당 node가 tsp 경로에 포함이 되면, 나머지 외부 node가 해당 node와의 edge도 감안해서 다시 가장 짧은 node 골라야 함 -> tsp 상에서 10개면 10 C 2니까 45개 경우의 수 확인함
+3-3 : 각 node들 10개 중에 2개씩 임의 확인 -> tsp 상의 2개의 임의의 nodes 골랐을 때, 기존에 존재하는 edge 최소 1개, 최대 2개 사용 못함, 1개의 경우 임의의 2개가 이웃했다는 소리니까 외부 node 경유하게 edge 연결하면 끝. 2개의 경우 원래 연결했던 node(의 단면)이 4개 나오고, 그중 2개가 외부의 node와 연결됨
+-> 이때,  cycle을 분리한 것으로 선이 2개로 나눠졌는데, 그 두 단면이 2개의 edge를 지웠을 때 같은 연장선에 있으면 안 됨 = cycle 1개, 선 1개라서 = 외부 node와 연결된 단면 각각 선을 이뤄야 함
+-> 그러면 남은 단면 2개를 연결하면 됨 (이 방법이 가능한 이유는 이미 greedy한 연결을 했기에, 나름의 최적이라 간주하여 기존 edge 변경 최소화) -> 그러면 경우의 수가 2개 -> (2 * close한 layer의 단면의 node 개수 * 외부 node의 개수) 만큼 반복 느낌.
+3-4 : 이렇게까지 했을 때의 TSP 길이 + 어떻게 바꿨는지를 기록하고, 총 경우의 수만큼 반복하면 외부 layer를 이루는 node와 모두 merge 했으니, 다음 layer와 반복.
+
+구현에 대해 주의점은 TSP를 구하는 것이기에 완전 그래프로, distance가 weight인데, matrix로 기록해두는 것이 아니라 공간적 문제로 on fly로 필요할 때 계산해야 해.
+
+
+
+
+
+
+
 
 메모리 & 시간 확인용 -> 정확히는 oom 메모리 한계 확인함.
 /usr/bin/time -v ./basic_CH ./tsp_dataset/a280.tsp 0 100000

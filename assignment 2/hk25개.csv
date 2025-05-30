@@ -1,0 +1,5 @@
+Algorithm,TSPFile,StartIndex,Count,AverageTime(ms),AverageMemory(MB),AverageResult
+basic_HK,a280.tsp,0,25,66588.00,5854.01,358.7650149375
+basic_HK,kz9976.tsp,0,25,46913.00,6055.19,1976.3832979577
+basic_HK,xql662.tsp,0,25,41304.00,6146.75,132.3724908953
+basic_HK,mona-lisa100K.tsp,0,25,41296.00,6147.43,84451.4200978066

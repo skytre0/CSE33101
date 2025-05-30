@@ -13,12 +13,12 @@ all: release
 # release 빌드
 release: CXXFLAGS = $(CXXFLAGS_RELEASE)
 release: LDFLAGS = $(LDFLAGS_RELEASE)
-release: evaltsp basic_HK basic_CH
+release: evaltsp basic_HK basic_CH MST2 myown
 
 # debug 빌드 (make db)
 db: CXXFLAGS = $(CXXFLAGS_DEBUG)
 db: LDFLAGS = $(LDFLAGS_DEBUG)
-db: evaltsp basic_HK basic_CH
+db: evaltsp basic_HK basic_CH MST2 myown
 
 # 실행 파일 빌드
 evaltsp: evaltsp.o
@@ -30,10 +30,16 @@ basic_HK: basic_HK.o
 basic_CH: basic_CH.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
+MST2: MST2.o
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+myown: myown.o
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
 # 컴파일
 %.o: %.cpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 # 정리
 clean:
-	rm -f evaltsp basic_HK basic_CH *.o
+	rm -f evaltsp basic_HK basic_CH MST2 myown *.o
