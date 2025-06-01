@@ -199,6 +199,8 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
 // 리모델링 -> 그냥 single tree로 구현하기로 함
 
 struct node;
+struct edge;
+double get_slack(const edge* e);
 
 // 새 struct 제작 예정 -> edge -> head = +, tail = -..?
 // initialize에 각 연결된 coor 설정하고, 한 coor을 범위 버리는 방식이면 최소한만 만들기 가능 + 찾기 가능한 상태
@@ -209,6 +211,9 @@ struct edge {
     node* v;
     node* uo;
     node* vo;
+    bool operator<(const edge& other) const {
+        return get_slack(this) < get_slack(&other);
+    }
 };
 
 struct node {       // 일반 node 기준 지표 = 주석 (blossom 제외)
@@ -474,19 +479,44 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
         else    i++;
     }
 
-    
+    // 기존 방식 ->
+    // for (int i = 0; i < (int)blossom->nl.size(); i++) {
+    //     for (int j = 0; j < (int)blossom->nl[i]->el.size(); j++) {
+    //         if (blossom->nl[i]->el[j]->u == blossom->nl[i]) {
+    //             if (blossom->nl[i]->el[j]->v->up == nullptr)
+    //                 blossom->el.emplace_back(blossom->nl[i]->el[j]);
+    //         }
+    //         if (blossom->nl[i]->el[j]->v == blossom->nl[i]) {
+    //             if (blossom->nl[i]->el[j]->u->up == nullptr)
+    //                 blossom->el.emplace_back(blossom->nl[i]->el[j]);
+    //         }
+    //     }
+    // }
+
+
+
     // 다 blossom에 넣되, 이제는 기존에 inner였던 node의 edge도 추가 가능함
+    // 외부와 연결된 edge를 blossom에 넣으면, 본인은 안 들고 있게 제거
     for (int i = 0; i < (int)blossom->nl.size(); i++) {
-        for (int j = 0; j < (int)blossom->nl[i]->el.size(); j++) {
+        for (int j = 0; j < (int)blossom->nl[i]->el.size(); ) {
             if (blossom->nl[i]->el[j]->u == blossom->nl[i]) {
-                if (blossom->nl[i]->el[j]->v->up == nullptr)
+                if (blossom->nl[i]->el[j]->v->up == nullptr) {
                     blossom->el.emplace_back(blossom->nl[i]->el[j]);
+                    blossom->nl[i]->el[j] = blossom->nl[i]->el.back();
+                    blossom->nl[i]->el.pop_back();
+                }
+                else j++;
             }
-            if (blossom->nl[i]->el[j]->v == blossom->nl[i]) {
-                if (blossom->nl[i]->el[j]->u->up == nullptr)
+            else if (blossom->nl[i]->el[j]->v == blossom->nl[i]) {
+                if (blossom->nl[i]->el[j]->u->up == nullptr) {
                     blossom->el.emplace_back(blossom->nl[i]->el[j]);
+                    blossom->nl[i]->el[j] = blossom->nl[i]->el.back();
+                    blossom->nl[i]->el.pop_back();
+                }
+                else j++;
             }
         }
+        blossom->nl[i]->el.shrink_to_fit();
     }
 
     // nl의 경계 간선 추출 종료 = blossom의 inner와 연결된 edge 제외 나머지 edges에 추가 + 이제 edge update해서 blossom pointing하게
@@ -570,25 +600,51 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     // blossom 무조건 matched 상태 -> 본인보다 depth 큰 outer와
     // blossom (-) = inner에 위치한 상태 = parent 무조건 존재함
 
-    for (int i = 0; i < (int)target->nl.size(); i++) {
-        downnode = target->nl[i];            
-        downnode->treeidx = target->treeidx;        // blossom could have been made in the past
-        for (int j = 0; j < (int)downnode->el.size(); j++) {
-            if (downnode->el[j]->u == target) {
-                // edge의 한쪽 끝을 target -> 본인으로 edge 방향 조정
-                downnode->el[j]->u = downnode;
-                // 본인 반대쪽 parent / matched 여부 확인하기
-                if (downnode->el[j]->v == target->parent)   pev.emplace_back(downnode->el[j]);
-                if (downnode->el[j]->v == target->matched)  mev.emplace_back(downnode->el[j]);
+    // 기존 방식 -> 
+    // for (int i = 0; i < (int)target->nl.size(); i++) {
+    //     downnode = target->nl[i];            
+    //     downnode->treeidx = target->treeidx;        // blossom could have been made in the past
+    //     for (int j = 0; j < (int)downnode->el.size(); j++) {
+    //         if (downnode->el[j]->u == target) {
+    //             // edge의 한쪽 끝을 target -> 본인으로 edge 방향 조정
+    //             downnode->el[j]->u = downnode;
+    //             // 본인 반대쪽 parent / matched 여부 확인하기
+    //             if (downnode->el[j]->v == target->parent)   pev.emplace_back(downnode->el[j]);
+    //             if (downnode->el[j]->v == target->matched)  mev.emplace_back(downnode->el[j]);
 
-            }
-            if (downnode->el[j]->v == target) {
-                downnode->el[j]->v = downnode;
-                if (downnode->el[j]->u == target->parent)   pev.emplace_back(downnode->el[j]);
-                if (downnode->el[j]->u == target->matched)  mev.emplace_back(downnode->el[j]);
-            }
+    //         }
+    //         if (downnode->el[j]->v == target) {
+    //             downnode->el[j]->v = downnode;
+    //             if (downnode->el[j]->u == target->parent)   pev.emplace_back(downnode->el[j]);
+    //             if (downnode->el[j]->u == target->matched)  mev.emplace_back(downnode->el[j]);
+    //         }
+    //     }
+    // }
+
+
+    for (int i = 0; i < (int)target->el.size(); i++) {
+        node* uside = target->el[i]->uo;
+        node* vside = target->el[i]->vo;
+        while (uside->up != nullptr && uside->up != target) uside = uside->up;
+        while (vside->up != nullptr && vside->up != target) vside = vside->up;
+        if (uside->up != nullptr && uside->up == target) {
+            // edge의 한쪽 끝을 target -> 본인으로 edge 방향 조정
+            target->el[i]->u = uside;
+            uside->treeidx = target->treeidx;
+            // shrink에서 blossom에 넘겨 주고 본인에게서 삭제했기에 다시 가져오기
+            uside->el.emplace_back(target->el[i]);
+            // 본인 반대쪽 parent / matched 여부 확인하기
+            if (target->el[i]->v == target->parent)   pev.emplace_back(target->el[i]);
+            if (target->el[i]->v == target->matched)  mev.emplace_back(target->el[i]);
         }
-    }
+        else if (vside->up != nullptr && vside->up == target) {
+            target->el[i]->v = vside;
+            vside->treeidx = target->treeidx;
+            vside->el.emplace_back(target->el[i]);
+            if (target->el[i]->u == target->parent)   pev.emplace_back(target->el[i]);
+            if (target->el[i]->u == target->matched)  mev.emplace_back(target->el[i]);
+        }
+    } 
 
 
     // expand all에서 상위 blossom 강제 해체하면서 일부 slack 보정 사라졌기에 get slack끼리의 크기 비교
@@ -843,6 +899,9 @@ void augment(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     // console << "seq : " << target->cur.index << ", " << target->cur.x << ", " << target->cur.y << endl;
 
     // 이미 dual update 하고 와서, expand 필요한 경우 이미 실시한 상태.
+    int tar_tree = target->treeidx;
+    int ext_tree = target->parent->treeidx;
+
     while (target->parent != nullptr) {
         if (target->depth % 2) {
             target->parent->matched = target;
@@ -855,9 +914,11 @@ void augment(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < (int)nodes[i].size(); j++) {
             node* tmpn = nodes[i][j];
-            tmpn->treeidx = -1;
-            tmpn->depth = 0;
-            tmpn->parent = nullptr;
+            if (tmpn->treeidx == tar_tree || tmpn->treeidx == ext_tree) {
+                tmpn->treeidx = -1;
+                tmpn->depth = 0;
+                tmpn->parent = nullptr;
+            }
         }
     }
 
@@ -901,16 +962,15 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
     btainer.reserve(odds.size());
     for (int mnt = 0; mnt < (int)odds.size() / 2; mnt++) {
         int odx = mnt;
-        lasttry--;
 
-        // console << odx+1 << "/" << odds.size() / 2 << ", coor nums : " << odds.size() << endl;
+        console << odx+1 << "/" << odds.size() / 2 << ", coor nums : " << odds.size() << endl;
         
 
         vector<node*> nodes[2] = {};
         nodes[0].reserve(odds.size());       // for outer (+)
         nodes[1].reserve(odds.size());       // for inner (-)
         vector<edge*> edges = {};
-        edges.reserve(odds.size() * odds.size());
+        edges.reserve((odds.size() * odds.size()) / 2);
 
         double delta;
         edge* e;
@@ -920,13 +980,21 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
         // int vsize = min(starter.max_size(), odds.size() * odds.size());
         // starter.reserve(vsize);
 
+        // 기존 방식 ->
+        // for (int i = 0; i < (int)odds.size(); i++) {
+        //     for (int j = i; j < (int)odds.size()-1; j++) {
+        //         if ((mn[odds[i]].el[j]->u->matched == nullptr && mn[odds[i]].el[j]->u->up == nullptr && mn[odds[i]].el[j]->u->down == nullptr) || 
+        //             (mn[odds[i]].el[j]->v->matched == nullptr && mn[odds[i]].el[j]->v->up == nullptr && mn[odds[i]].el[j]->v->down == nullptr))
+        //             starter.emplace_back(mn[odds[i]].el[j]);
+        //     }
+        // }
+
+
         // get only edges that are connected to free node
-        for (int i = 0; i < (int)odds.size(); i++) {
-            for (int j = i; j < (int)odds.size()-1; j++) {
-                if ((mn[odds[i]].el[j]->u->matched == nullptr && mn[odds[i]].el[j]->u->up == nullptr && mn[odds[i]].el[j]->u->down == nullptr) || 
-                    (mn[odds[i]].el[j]->v->matched == nullptr && mn[odds[i]].el[j]->v->up == nullptr && mn[odds[i]].el[j]->v->down == nullptr))
-                    starter.emplace_back(mn[odds[i]].el[j]);
-            }
+        for (pair<const pair<node*, node*>, edge>& edx : me) {
+            if ((edx.second.u->matched == nullptr && edx.second.u->up == nullptr && edx.second.u->down == nullptr) || 
+                (edx.second.v->matched == nullptr && edx.second.v->up == nullptr && edx.second.v->down == nullptr))
+                starter.emplace_back(&edx.second);            
         }
 
         // get free node with smallest slack from those edges
@@ -940,6 +1008,7 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
         if (starter[stedge]->u->matched == nullptr) n = starter[stedge]->u;
         else    n = starter[stedge]->v;
         starter.clear();
+        starter.shrink_to_fit();
 
         // n == root of the tree -> insert all edges of root
         n->treeidx = odx;
@@ -1037,11 +1106,12 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
                         wastarget->parent = to_extend;
                         wastarget->depth = to_extend->depth+1;
                         wastarget->treeidx = to_extend->treeidx;
+                        to_extend = wastarget;
                     }
                     target->parent = to_extend;
                     target->depth = to_extend->depth+1;
-                    target->treeidx = to_extend->treeidx;
                     augment(target, nodes, edges, btainer);
+                    lasttry--;
                     break;
                 }
                 else {      // same tree = since no edge to inner node = shrink
@@ -1062,6 +1132,7 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
                     nodes[1].emplace_back(target);
 
                     augment(target, nodes, edges, btainer);
+                    lasttry--;
                     break;
                 }
                 else {      // target is already matched = grow
