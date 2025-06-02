@@ -111,6 +111,9 @@ int main(int argc, char* argv[]) {
     if (v.size() < 2) {
         cerr << "Not enough nodes for TSP\n";
         cout << "ALGORITHM_TIME_MS:0\nRESULT:0\n";
+        cout << "Number of inputs (used): " << actual_count << "\n";
+        cout << "Start index: " << start_index << "\n";
+        cout << "Vector size: " << v.size() << "\n";
         return 0;
     }
 
@@ -126,16 +129,17 @@ int main(int argc, char* argv[]) {
     cout << "Number of inputs (used): " << actual_count << "\n";
     cout << "Start index: " << start_index << "\n";
     cout << "Vector size: " << v.size() << "\n";
-    for (size_t i = 0; i < std::min(v.size(), size_t(5)); ++i) {
-        cout << v[i].x << " " << v[i].y << "\n";
-    }
+    // for (size_t i = 0; i < std::min(v.size(), size_t(5)); ++i) {
+    //     cout << v[i].x << " " << v[i].y << "\n";
+    // }
     return 0;
 }
 
 double get_dist(coor& a, coor& b) {
     double dx = a.x - b.x;
     double dy = a.y - b.y;
-    return sqrt(dx * dx + dy * dy);
+    // return (floor(sqrt(dx * dx + dy * dy) * 1e15)) * 1e-15;
+    return round((floor(sqrt(dx * dx + dy * dy) * 1e13)) * 1e-13);
 }
 
 double basic_HK(int num, vector<coor>& v) {

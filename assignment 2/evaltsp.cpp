@@ -20,14 +20,15 @@ using namespace std;
 
 std::vector<std::string> programs = {
     // "./basic_HK", 
-    "./basic_CH"
-    // "./MST2"
+    "./basic_CH", 
+    // "./MST2", 
+    // "./myown", 
     // 필요시 다른 프로그램 추가
 };
 
 std::vector<std::string> tsp_files = {
-    // "a280.tsp",
-    // "xql662.tsp",
+    "a280.tsp",
+    "xql662.tsp",
     "kz9976.tsp",
     // "mona-lisa100K.tsp"
 };
@@ -36,8 +37,8 @@ std::string tsp_dir = "./tsp_dataset/";
 std::string result_csv = "eval_tsp_result.csv";
 // 0부터 시작함
 int start_index = 0;
-int num_coor = 1000;
-int repeat = 1; // 반복 횟수
+int num_coor = 100000;
+int repeat = 2; // 반복 횟수
 
 // ======= 구조체 및 유틸 =======
 
@@ -158,7 +159,6 @@ void runProgram(const std::string& program, const std::string& tsp_file, int sta
     for (int r = 0; r < repeat; ++r) {
         RunResult result;
         execute(program, tsp_path, start, num_coor, result);
-        // start++;
         if (result.time_ms >= 0 && result.memory_mb >= 0 && result.result_val >= 0) {
             times.push_back(result.time_ms);
             memories.push_back(result.memory_mb);
@@ -190,6 +190,8 @@ int main() {
     std::string unique_csv = get_unique_filename(result_csv);
     std::ofstream csv(unique_csv);
     csv << "Algorithm,TSPFile,StartIndex,Count,AverageTime(ms),AverageMemory(MB),AverageResult\n";
+// held karp용
+// while (num_coor < 27) {num_coor++;}
     for (const auto& program : programs) {
         if (!file_exists(program)) {
             std::cerr << "실행 파일 없음: " << program << "\n";
@@ -221,8 +223,10 @@ int main() {
                 << std::fixed << std::setprecision(2) << avg_memory << ","
                 << std::fixed << std::setprecision(10) << avg_result << "\n";
             std::cout << "---------------------------------------------------\n";
+            
         }
     }
+
     csv.close();
     std::cout << "CSV 저장 완료: " << unique_csv << "\n";
     return 0;

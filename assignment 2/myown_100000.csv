@@ -1,0 +1,5 @@
+Algorithm,TSPFile,StartIndex,Count,AverageTime(ms),AverageMemory(MB),AverageResult
+myown,a280.tsp,0,280,3.00,3.75,2955.0000000000
+myown,xql662.tsp,0,662,10.20,3.73,2897.0000000000
+myown,kz9976.tsp,0,9976,1269.40,5.34,1242963.0000000000
+myown,mona-lisa100K.tsp,0,100000,150114.80,22.72,6225368.0000000000

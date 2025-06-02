@@ -152,8 +152,8 @@ int main(int argc, char* argv[]) {
 double get_dist(coor& a, coor& b) {
     double dx = a.x - b.x;
     double dy = a.y - b.y;
-    return (floor(sqrt(dx * dx + dy * dy) * 1e15)) * 1e-15;
-    // return sqrt(dx * dx + dy * dy);
+    // return (floor(sqrt(dx * dx + dy * dy) * 1e15)) * 1e-15;
+    return round((floor(sqrt(dx * dx + dy * dy) * 1e13)) * 1e-13);
 }
 
 

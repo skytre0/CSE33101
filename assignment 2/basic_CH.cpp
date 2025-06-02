@@ -152,8 +152,8 @@ int main(int argc, char* argv[]) {
 double get_dist(coor& a, coor& b) {
     double dx = a.x - b.x;
     double dy = a.y - b.y;
-    return (floor(sqrt(dx * dx + dy * dy) * 1e15)) * 1e-15;
-    // return sqrt(dx * dx + dy * dy);
+    // return (floor(sqrt(dx * dx + dy * dy) * 1e15)) * 1e-15;
+    return round((floor(sqrt(dx * dx + dy * dy) * 1e13)) * 1e-13);
 }
 
 
@@ -191,7 +191,7 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
 
     }
     m[v[0]]--;  
-    console << sum << "\n" << flush;    
+    // console << sum << "\n" << flush;    
 
     return ans;
 }
@@ -336,8 +336,8 @@ void grow(node* to_extend, node* target, vector<node*> (&nodes)[2], vector<edge*
     np->treeidx = target->treeidx;
 
     // add outer to nodes[0], inner to nodes[1]
-    nodes[0].push_back(np);         // outer (+)
-    nodes[1].push_back(target);     // inner (-)
+    nodes[0].emplace_back(np);         // outer (+)
+    nodes[1].emplace_back(target);     // inner (-)
 
     // edge linking inner node not allowed
     edge* e;
@@ -352,7 +352,7 @@ void grow(node* to_extend, node* target, vector<node*> (&nodes)[2], vector<edge*
 
     // remove edge to np node -> since will put soon -> no need for same multiple 
     for (int i = 0; i < (int)edges.size(); ) {      // edge updated above
-        if (e->u == np || e->v == np) {
+        if (edges[i]->u == np || edges[i]->v == np) {
             edges[i] = edges[edges.size()-1];
             edges.pop_back();
         }
@@ -375,8 +375,9 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
     // create new node for blossom
     node* blossom = new node;
 
+
     // initialize blossom with tbase
-    blossom->dual = 0;
+    blossom->dual = 0.0;
     blossom->treeidx = tbase->treeidx;
     blossom->depth = tbase->depth;
 
@@ -434,10 +435,11 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
 
     // 이걸로 blossom 내부 cycle + 모두의 up = blossom 완성
 
+
     // debug cycle
     // node* downnode = tbase;
-    // while (downnode->parent != tbase)      {console << downnode->cur.index << ", " << downnode->cur.x << ", " << downnode->cur.y << endl; downnode = downnode->parent;}
-    // console << downnode->cur.index << ", " << downnode->cur.x << ", " << downnode->cur.y << "\n" << endl;
+    // while (downnode->parent != tbase)      {console << downnode->cur.index << ", "; downnode = downnode->parent;}
+    // console << downnode->cur.index << endl;
     // downnode = downnode->parent;
 
     // nodes에 있는 blossom 내부의 node 제거, blossom은 추가
@@ -463,12 +465,6 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
         if (nodes[1][i]->parent->up != nullptr)     nodes[1][i]->parent = nodes[1][i]->parent->up;
     }
 
-    // debug cycle
-    // downnode = tbase;
-    // while (downnode->parent != tbase)      {console << downnode->cur.index << ", " << downnode->cur.x << ", " << downnode->cur.y << endl; downnode = downnode->parent;}
-    // console << downnode->cur.index << ", " << downnode->cur.x << ", " << downnode->cur.y << endl;
-    // downnode = downnode->parent;
-
 
     // 일단 edges에서 up이 한쪽이라도 존재하면 제거 -> 내부 node끼리 연결 여부, 기존 depth % 2 여부 확인 번거로워서
     for (int i = 0; i < (int)edges.size(); ) {
@@ -493,7 +489,14 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
     //     }
     // }
 
+    // debug
+    // for (edge* ee : edges) {
+    //     assert(get_slack(ee) >= 0);
+    // }
 
+    // for (node* bn : blossom->nl) {
+    //     console << bn->cur.index << ", " << bn->depth << endl;
+    // }
 
     // 다 blossom에 넣되, 이제는 기존에 inner였던 node의 edge도 추가 가능함
     // 외부와 연결된 edge를 blossom에 넣으면, 본인은 안 들고 있게 제거
@@ -527,21 +530,20 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
         }
     }
 
+
     // blossom이기에 btainer에 본인 추가 -> btainer는 순서 중요함
     btainer.emplace_back(blossom);
 
-
     // debug
-    // console << "shrink blossom : " << blossom->cur.index << ", " << blossom->cur.x << ", " << blossom->cur.y << " + ";
-    // for (int i = 0; i < (int)blossom->el.size(); i++) {
-    //     if (blossom->depth == 0) {
-    //         console << "shrink free node... & ";
-    //         break;
+    // int countfree = 0;
+    // for (node* fn : nodes[0]) {
+    //     if (fn->matched == nullptr) countfree++;
+    // }
+    // for (edge* be : blossom->el) {
+    //     if (get_slack(be) < 0) {
+    //         console << countfree << "th, " << get_slack(be) << " : " << be->u->cur.index << ", " << be->u->treeidx << ", " << be->u->depth << " vs " << be->v->cur.index << ", " << be->v->treeidx << ", " << be->v->depth << endl;
     //     }
-    //     if ((blossom->el[i]->u == blossom && blossom->el[i]->v == blossom->matched) || (blossom->el[i]->v == blossom && blossom->el[i]->u == blossom->matched)) {
-    //         console << "shrink true... & ";
-    //         break;
-    //     } 
+    //     assert(get_slack(be) >= 0);
     // }
 
     // console << blossom->nl.size() << " nodes shrinking done" << endl;
@@ -550,8 +552,10 @@ void shrink(node* tbase, node* to_extend, node* target, vector<node*> (&nodes)[2
 
 
 node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), vector<node*> (&btainer)) {
-    // console << "expanding " << target->cur.index << ", " << target->cur.x << ", " << target->cur.y << " : size : " << target->nl.size() << endl;
-    // console << "blossom : " << target->cur.index << ", "  << target->cur.x << ", " << target->cur.y << endl;
+    // console << "expanding " << target->cur.index << ", " << " : size : " << target->nl.size() << endl;
+    // for (node* bn : target->nl) {
+    //     console << bn->cur.index << ", " << bn->depth << endl;
+    // }
     
     // expand only in dual_update -> check if depth % 2 & dual == 0 & down != nullptr
     int bdx = -1;
@@ -664,8 +668,6 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
     }
 
 
-    // debug
-    // console << "pev, mev final size : " << pev.size() << ", " << mev.size() << endl;
 
 
     // pn, mn 지정 -> pn은 pm 끝나고 expand all할 때 parent 없기에 조건 확인해서 없으면 pn = mn으로
@@ -821,8 +823,24 @@ node* expand(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
         }
     }
 
+    // 하단의 notree edge로 인해 잠시 treeidx = -1로 -> 이후 복구 예정
+    for (node* tmpn : target->nl) {
+        if (tmpn != mn) tmpn->treeidx = -1;
+    }  
+
+    // notree에 있는 것들과 이제 outer 연결 가능으로 그것들만 뽑아서 연결
+    for (int i = 0; i < (int)notree.size(); i++) {
+        for (edge* te : notree[i]->el) {
+            if (te->u == notree[i] && te->v->treeidx != -1 && !(te->v->depth % 2)) edges.emplace_back(te);
+            else if (te->v == notree[i] && te->u->treeidx != -1 && !(te->u->depth % 2)) edges.emplace_back(te);
+        }
+    }
 
     notree.clear();
+
+    for (node* tmpn : target->nl) {
+        tmpn->treeidx = mn->treeidx;
+    }  
 
     // target->nl에 남은 것 = path 상에 존재하는 것.
     for (int i = 0; i < (int)target->nl.size(); i++)
@@ -890,13 +908,14 @@ int dual_update(double delta, vector<node*> (&nodes)[2], vector<edge*> (&edges),
             passed = 1;
         }
     }
+
     return passed;
 }
 
 
 void augment(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), vector<node*> (&btainer)) {        // always target == free node
     // console << "augmenting" << endl;
-    // console << "seq : " << target->cur.index << ", " << target->cur.x << ", " << target->cur.y << endl;
+    // console << "new : " << target->cur.index << " -> ";
 
     // 이미 dual update 하고 와서, expand 필요한 경우 이미 실시한 상태.
     int tar_tree = target->treeidx;
@@ -908,19 +927,42 @@ void augment(node* target, vector<node*> (&nodes)[2], vector<edge*> (&edges), ve
             target->matched = target->parent;
         }
         target = target->parent;
+        // console << target->cur.index << " -> ";
+    }
+    // console << endl;
+
+    // remove edges related to alternating tree    -> for multiple tree
+    for (int i = 0; i < (int)edges.size(); ) {
+        if (edges[i]->u->treeidx == tar_tree || edges[i]->u->treeidx == ext_tree || edges[i]->v->treeidx == tar_tree || edges[i]->v->treeidx == ext_tree) {
+            edges[i] = edges.back();
+            edges.pop_back();
+        }
+        else    i++;
     }
 
-    // intialize every node we looked at
+    for (node* remainn : nodes[0]) {
+        if (remainn->treeidx == tar_tree || remainn->treeidx == ext_tree)   continue;
+        for (edge* nie : remainn->el) {
+            if (nie->u->treeidx == tar_tree || nie->u->treeidx == ext_tree) edges.emplace_back(nie);
+            if (nie->v->treeidx == tar_tree || nie->v->treeidx == ext_tree) edges.emplace_back(nie);
+        }
+    }
+
+    // intialize every node we looked at -> in multiple, only trees that met
     for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < (int)nodes[i].size(); j++) {
+        for (int j = 0; j < (int)nodes[i].size(); ) {
             node* tmpn = nodes[i][j];
             if (tmpn->treeidx == tar_tree || tmpn->treeidx == ext_tree) {
                 tmpn->treeidx = -1;
                 tmpn->depth = 0;
                 tmpn->parent = nullptr;
+                nodes[i][j] = nodes[i].back();
+                nodes[i].pop_back();
             }
+            else    j++;
         }
     }
+
 
     // console << "augmenting done" << endl;
     return;
@@ -963,7 +1005,7 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
     for (int mnt = 0; mnt < (int)odds.size() / 2; mnt++) {
         int odx = mnt;
 
-        console << odx+1 << "/" << odds.size() / 2 << ", coor nums : " << odds.size() << endl;
+        // console << odx+1 << "/" << odds.size() / 2 << ", coor nums : " << odds.size() << endl;
         
 
         vector<node*> nodes[2] = {};
@@ -996,32 +1038,54 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
                 (edx.second.v->matched == nullptr && edx.second.v->up == nullptr && edx.second.v->down == nullptr))
                 starter.emplace_back(&edx.second);            
         }
-
-        // get free node with smallest slack from those edges
-        int stedge = 0;
-        for (int i = 0; i < (int)starter.size(); i++) {
-            e = edge_update(starter[i]);
-            if (get_slack(starter[stedge]) > get_slack(starter[i])) {
-                stedge = i;
+        
+        // multiple tree : 
+        if (odds.size() * 0.475 < odx) {
+            // console << "now multiple" << endl;
+            for (int i = 0; i < (int)starter.size(); i++) {
+                e = edge_update(starter[i]);
+                edges.emplace_back(e);
+                if (starter[i]->u->matched == nullptr && starter[i]->u->treeidx == -1) {
+                    starter[i]->u->treeidx = starter[i]->u->cur.index;
+                    nodes[0].emplace_back(starter[i]->u);
+                }
+                if (starter[i]->v->matched == nullptr && starter[i]->v->treeidx == -1) {
+                    starter[i]->v->treeidx = starter[i]->v->cur.index;
+                    nodes[0].emplace_back(starter[i]->v);
+                }
             }
+            starter.clear();
+            starter.shrink_to_fit();
         }
-        if (starter[stedge]->u->matched == nullptr) n = starter[stedge]->u;
-        else    n = starter[stedge]->v;
-        starter.clear();
-        starter.shrink_to_fit();
 
-        // n == root of the tree -> insert all edges of root
-        n->treeidx = odx;
-        for (int i = 0; i < (int)n->el.size(); i++) {
-            edges.emplace_back(n->el[i]);
+
+        // single tree : 
+        else {
+            // get free node with smallest slack from those edges
+            int stedge = 0;
+            for (int i = 0; i < (int)starter.size(); i++) {
+                e = edge_update(starter[i]);
+                if (get_slack(starter[stedge]) > get_slack(starter[i])) {
+                    stedge = i;
+                }
+            }
+            if (starter[stedge]->u->matched == nullptr) n = starter[stedge]->u;
+            else    n = starter[stedge]->v;
+            starter.clear();
+            starter.shrink_to_fit();
+
+            // n == root of the tree -> insert all edges of root
+            n->treeidx = n->cur.index;
+            for (int i = 0; i < (int)n->el.size(); i++) {
+                edges.emplace_back(n->el[i]);
+            }
+            nodes[0].emplace_back(n);            
         }
-        nodes[0].emplace_back(n);
 
 
 
         // loop until augment is made = (shrink / grow / expand doesn't break the loop)
         while (1) {
-
             // // debug
             // for (int i = 0; i < (int)nodes[1].size(); i++) {
             //     console << nodes[1][i]->cur.index << ", " << nodes[1][i]->cur.x << ", " << nodes[1][i]->cur.y << " matched with " << nodes[1][i]->matched->cur.index << ", " << nodes[1][i]->matched->cur.x << ", " << nodes[1][i]->matched->cur.y << endl;
@@ -1034,7 +1098,7 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
             //     console << downnode->cur.index << ", " << downnode->cur.x << ", " << downnode->cur.y << endl;
             //     downnode = downnode->parent;
             // }
-
+            
 
             // dual_update에서 expand함 = expand 안 하고 나오면 grow / shrink / augment 중 하나되도록 dual_update까지를 loop 시켜야 함.
             int noexpand = 1;   // see if it expanded = need to get new delta
@@ -1043,17 +1107,24 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
                 // debug
                 // console << "no expand start : " << noexpand << endl;
 
+                // partly unsorted -> should I?
+                // sort(edges.begin(), edges.end());
+
                 // initialize delta, adx
                 delta = INF;
                 adx = 0;
                 // make delta be value that make blossom expand
                 for (int i = 0; i < (int)nodes[1].size(); i++) {
-                    if (nodes[1][i]->down != nullptr)   delta = min(delta, nodes[1][i]->dual);
+                    if (nodes[1][i]->down != nullptr && delta > nodes[1][i]->dual)   delta = nodes[1][i]->dual;
                 }
+
+                // console << "expand lim : " << delta << ", ";
+
 
                 for (int i = 0; i < (int)edges.size(); i++) {
                     // no need to check inner edge here now.
                     if (edges[i]->u->treeidx != -1 && edges[i]->v->treeidx != -1) {       // edge's two end = both tree
+                        if ((edges[i]->u->depth % 2) || (edges[i]->v->depth % 2))    continue;
                         if (delta > get_slack(edges[i]) / 2) {      // since removed edge with inner node, delta = get_slack() / 2
                             delta = get_slack(edges[i]) / 2;
                             adx = i;
@@ -1067,6 +1138,7 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
 
                 // since single tree = dual update now.
                 noexpand = dual_update(delta, nodes, edges, btainer);
+
 
                 // debug
                 // console << "no expand end : " << noexpand << endl;
@@ -1112,7 +1184,8 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
                     target->depth = to_extend->depth+1;
                     augment(target, nodes, edges, btainer);
                     lasttry--;
-                    break;
+                    if (nodes[0].size() + nodes[1].size() == 0)
+                        break;
                 }
                 else {      // same tree = since no edge to inner node = shrink
                     node* tbase = nca(e);
@@ -1133,7 +1206,8 @@ void blossomV(vector<coor>& odds, map<coor, node>& mn, map<pair<node*, node*>, e
 
                     augment(target, nodes, edges, btainer);
                     lasttry--;
-                    break;
+                    if (nodes[0].size() + nodes[1].size() == 0)
+                        break;
                 }
                 else {      // target is already matched = grow
                     grow(to_extend, target, nodes, edges);
@@ -1181,15 +1255,17 @@ vector<pair<coor, coor>> mwpm(vector<coor>& odds) {
     blossomV(odds, mn, me, ohalf);
 
     ans.reserve(odds.size() / 2);
-    console << odds.size() << endl;
+    double check = 0;
     for (int i = 0; i < (int)odds.size(); i++) {
         node* final = &mn[odds[i]];
         if (final->matched != nullptr) {
+            check += get_dist(final->cur, final->matched->cur);
             ans.emplace_back(final->cur, final->matched->cur);
             final->matched->matched = nullptr;
             final->matched = nullptr;
         }
     }
+    // console << "should be same : " << check << endl;
 
     return ans;
 }
@@ -1248,8 +1324,10 @@ double basic_CH(int num, vector<coor>& v) {
     vector<coor> odds;
     for (int i = 0; i < num; i++) {
         if (m[v[i]] % 2 != 0)
-            odds.push_back(v[i]);
+            odds.emplace_back(v[i]);
     }
+    // console << odds.size() << endl;
+
     vector<pair<coor, coor>> pm = mwpm(odds);
 
     // double tmpsum = 0;
