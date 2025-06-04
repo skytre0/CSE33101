@@ -167,7 +167,6 @@ int ccw(const coor& a, const coor& b, const coor& c) {
 vector<coor> convex_hull(vector<coor>& v) {
     int n = v.size();
     if (n < 2) {
-        v.emplace_back(v[0]);
         return v;
     } 
     
@@ -234,12 +233,15 @@ vector<vector<coor>> divide_layers(vector<coor>& v) {
             break;
         }
         layers.emplace_back(hull);
+        // console << "ith size : " << layers.back().size() << endl;
     }
+    layers.back().emplace_back(layers.back()[0]);
     // int debugsum = 0;
     // for (int i = 0; i < layers.size(); i++) {
+    //     console << "sizes : " << layers[i].size() << endl;
     //     debugsum += layers[i].size();
     // }
-    // console << "alright : " << debugsum << endl;
+    // console << "alright : " << debugsum << ", " << layers.back().size() << endl;
     return layers;
 }
 

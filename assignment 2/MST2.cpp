@@ -187,7 +187,7 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v) {
         pv.pop_back();
 
     }
-    console << sum << "\n" << flush;    
+    // console << sum << "\n" << flush;    
 
     return ans;
 }

@@ -1,0 +1,5 @@
+Algorithm,TSPFile,StartIndex,Count,AverageTime(ms),AverageMemory(MB),AverageResult
+basic_CH,a280.tsp,0,280,9.5,6.38,2879
+basic_CH,xql662.tsp,0,662,111,7.94,2847
+basic_CH,kz9976.tsp,0,9976,2361986,1122.47,1186500
+basic_CH,it16862.tsp,0,16862,66207403,3728.98,625164

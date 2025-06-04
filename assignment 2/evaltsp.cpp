@@ -20,9 +20,9 @@ using namespace std;
 
 std::vector<std::string> programs = {
     // "./basic_HK", 
-    "./basic_CH", 
+    // "./basic_CH", 
     // "./MST2", 
-    // "./myown", 
+    "./myown", 
     // 필요시 다른 프로그램 추가
 };
 
@@ -30,7 +30,8 @@ std::vector<std::string> tsp_files = {
     "a280.tsp",
     "xql662.tsp",
     "kz9976.tsp",
-    // "mona-lisa100K.tsp"
+    "mona-lisa100K.tsp", 
+    "it16862.tsp", 
 };
 
 std::string tsp_dir = "./tsp_dataset/";
@@ -184,6 +185,54 @@ void runProgram(const std::string& program, const std::string& tsp_file, int sta
     }
 }
 
+
+
+// 기존 tsp_files 벡터를 주석 처리
+/*
+std::vector<std::string> tsp_files = {
+    "a280.tsp",
+    "xql662.tsp",
+    // "kz9976.tsp",
+    // "mona-lisa100K.tsp",
+    // "it16862.tsp"
+};
+*/
+
+// 와일드카드 함수 추가
+std::vector<std::string> get_tsp_files_wildcard(const std::string& dir_path) {
+    std::vector<std::string> files;
+    std::string command = "ls " + dir_path + "*.tsp 2>/dev/null";
+    
+    FILE* pipe = popen(command.c_str(), "r");
+    if (!pipe) return files;
+    
+    char buffer[512];
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+        std::string full_path(buffer);
+        // 개행문자 제거
+        if (!full_path.empty() && full_path.back() == '\n') {
+            full_path.pop_back();
+        }
+        
+        // 파일명만 추출 (경로 제거)
+        size_t pos = full_path.find_last_of('/');
+        std::string filename = (pos != std::string::npos) ? 
+                              full_path.substr(pos + 1) : full_path;
+        
+        if (!filename.empty()) {
+            files.push_back(filename);
+        }
+    }
+    pclose(pipe);
+    return files;
+}
+
+
+
+
+
+
+
 // ======= 메인 =======
 
 int main() {
@@ -197,6 +246,7 @@ int main() {
             std::cerr << "실행 파일 없음: " << program << "\n";
             continue;
         }
+        // std::vector<std::string> tsp_files = get_tsp_files_wildcard(tsp_dir);        // myown 용
         for (const auto& tsp_file : tsp_files) {
             std::string tsp_path = tsp_dir + tsp_file;
             if (!file_exists(tsp_path)) {

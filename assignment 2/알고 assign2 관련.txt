@@ -6,6 +6,9 @@ xql662 : 2513
 kz9976 : 1061882
 mona-lisa100K : 5757084
 
++
+iT16862 : 557315
+
 The instances in the VLSI collection range in size from 131 cities up to 744,710 cities. In these examples, the cost of travel between cities is specified by the Eulidean distance rounded to the nearest whole number (the TSPLIB EUC_2D-norm)
 -> 이에 따라서 dist 계산 방식 변경 필요
 
