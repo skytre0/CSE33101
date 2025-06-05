@@ -27,11 +27,11 @@ std::vector<std::string> programs = {
 };
 
 std::vector<std::string> tsp_files = {
-    "a280.tsp",
-    "xql662.tsp",
-    "kz9976.tsp",
-    "mona-lisa100K.tsp", 
-    "it16862.tsp", 
+    // "a280.tsp",
+    // "xql662.tsp",
+    // "kz9976.tsp",
+    // "mona-lisa100K.tsp", 
+    // "it16862.tsp", 
 };
 
 std::string tsp_dir = "./tsp_dataset/";
@@ -246,7 +246,7 @@ int main() {
             std::cerr << "실행 파일 없음: " << program << "\n";
             continue;
         }
-        // std::vector<std::string> tsp_files = get_tsp_files_wildcard(tsp_dir);        // myown 용
+        std::vector<std::string> tsp_files = get_tsp_files_wildcard(tsp_dir);        // myown 용
         for (const auto& tsp_file : tsp_files) {
             std::string tsp_path = tsp_dir + tsp_file;
             if (!file_exists(tsp_path)) {

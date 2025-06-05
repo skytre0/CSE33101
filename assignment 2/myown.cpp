@@ -464,6 +464,17 @@ double myown(int num, vector<coor>& v) {
     for (int i = layers.size()-1; i > -1; i--) {
         merge_layer(tsp_path, layers[i]);
     }
+
+    // tsp_path.pop_back();
+    // for (int i = 0; i < (int)tsp_path.size(); i++) {
+    //     for (int j = i+1; j < (int)tsp_path.size(); j++) {
+    //         if (get_dist(tsp_path[i], tsp_path[(i+1) % (int)tsp_path.size()]) + get_dist(tsp_path[j], tsp_path[(j+1) % (int)tsp_path.size()])
+    //          > get_dist(tsp_path[i], tsp_path[j]) + get_dist(tsp_path[(i+1) % (int)tsp_path.size()], tsp_path[(j+1) % (int)tsp_path.size()])) {
+    //             reverse(tsp_path.begin() + i + 1, tsp_path.begin() + j + 1);
+    //         }
+    //     }
+    // }
+    // tsp_path.emplace_back(tsp_path[0]);
     
     return calculate_cycle_length(tsp_path);
 }
