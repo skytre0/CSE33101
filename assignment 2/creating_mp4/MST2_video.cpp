@@ -33,9 +33,7 @@ struct coor {
 };
 const double INF = numeric_limits<double>::max();
 
-double MST2(int num, vector<coor>& v, const string& dataset_name);
-// 기존 prim을 아래처럼 ofstream 인자 추가하여 교체
-vector<pair<coor, coor>> prim(int num, vector<coor>& v, ofstream& viz_out);
+double MST2(int num, vector<coor>& v);
 double get_dist(coor& a, coor& b);
 
 std::string trim(const string& s) {
@@ -133,14 +131,9 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-    string dataset_name = tspfile;
-    size_t pos = dataset_name.find_last_of("/\\");
-    if (pos != string::npos) dataset_name = dataset_name.substr(pos + 1);
-    pos = dataset_name.find_last_of(".");
-    if (pos != string::npos) dataset_name = dataset_name.substr(0, pos);
-
+    // 시간 측정 시작
     auto start = chrono::steady_clock::now();
-    double result = MST2(actual_count, v, dataset_name); // 교체
+    double result = MST2(actual_count, v);
     auto end = chrono::steady_clock::now();
     auto duration_ms = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -164,7 +157,7 @@ double get_dist(coor& a, coor& b) {
 }
 
 
-vector<pair<coor, coor>> prim(int num, vector<coor>& v, ofstream& viz_out) { // 인자 추가
+vector<pair<coor, coor>> prim(int num, vector<coor>& v) {
     double sum = 0;
     vector<pair<coor, coor>> ans;
 
@@ -188,15 +181,6 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, ofstream& viz_out) { // 
         }
         ans.push_back({v[get<1>(pv[mindex])], v[get<2>(pv[mindex])]});
         // console << ans.size() << " : " << get<1>(pv[mindex]).x << " " << get<1>(pv[mindex]).y << " <=> " << get<2>(pv[mindex]).x << " " << get<2>(pv[mindex]).y << "\n" << flush;
-        
-        // --- [추가할 부분] MST 간선 하나씩 추가될 때마다 프레임 기록 ---
-        viz_out << "FRAME: MST Formation\n";
-        for (const auto& e : ans) {
-            viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 0\n";
-        }
-        viz_out << "\n";
-        // -----------------------------------------------------------------
-        
         sum += get<0>(pv[mindex]);
         new_pos = get<2>(pv[mindex]);
         pv[mindex] = pv[pv.size()-1];
@@ -254,12 +238,13 @@ vector<coor> eulercircuit(vector<vector<coor>> (&ntn)) {
 
 // vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);       // for debugging
 
-double MST2(int num, vector<coor>& v, const string& dataset_name) {
-    string out_filename = "MST2_" + dataset_name + ".txt";
-    ofstream viz_out(out_filename);
+double MST2(int num, vector<coor>& v) {
+    // no need for map
+    vector<pair<coor, coor>> mst = prim(num, v);
+    // anotherprim(num, v, m);
+    // console << mst.size() << " = " << num-1 << "\n";
 
-    vector<pair<coor, coor>> mst = prim(num, v, viz_out);
-
+    // make adjacency vector (node to node), use coor.index for mapping
     vector<vector<coor>> ntn(mst.size() * 2 + 1);
     for (int i = 0; i < (int)mst.size(); i++) {
         ntn[mst[i].second.index].emplace_back(mst[i].first);
@@ -267,7 +252,8 @@ double MST2(int num, vector<coor>& v, const string& dataset_name) {
         ntn[mst[i].first.index].emplace_back(mst[i].second);
         ntn[mst[i].first.index].emplace_back(mst[i].second);
     }
-    
+
+    // approx tsp tour = visit all edges twice = can do the same with euler circuit now
     vector<coor> ec = eulercircuit(ntn);
     ntn.clear();
     int visited[mst.size() * 2 + 1] = {};
@@ -275,40 +261,14 @@ double MST2(int num, vector<coor>& v, const string& dataset_name) {
     double chtotal = 0;
     coor recent = ec[0];
     visited[recent.index] = 1;
-    
-    vector<coor> tsp_path;
-    tsp_path.push_back(recent);
-
-    // [과정 2] 오일러 회로 숏컷 탐색 (배경 MST: 회색 1, 탐색 경로: 파랑 0)
     for (int i = 1; i < (int)ec.size(); i++) {
         if (!(visited[ec[i].index])) {
             visited[ec[i].index] = 1;
             chtotal += get_dist(recent, ec[i]);
             recent = ec[i];
-            tsp_path.push_back(recent);
-
-            viz_out << "FRAME: Euler Tour Preorder Traversal\n";
-            // 만들어진 MST는 회색(1) 배경으로
-            for (const auto& e : mst) viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 1\n";
-            // 숏컷 경로는 파란색(0)
-            for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-                viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 0\n";
-            }
-            viz_out << "\n";
         }
-        if (i == (int)ec.size()-1) {
-            chtotal += get_dist(recent, ec[0]);
-            tsp_path.push_back(ec[0]);
-            
-            // [과정 3] 최종 완성 (보라 3)
-            viz_out << "FRAME: Final TSP Path\n";
-            for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-                viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 3\n";
-            }
-            viz_out << "\n";
-        }
+        if (i == (int)ec.size()-1) chtotal += get_dist(recent, ec[0]);
     }
-    viz_out.close();
     return chtotal;
 }
 

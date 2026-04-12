@@ -33,8 +33,7 @@ struct coor {
 };
 const double INF = numeric_limits<double>::max();
 
-// 기존: double myown(int num, vector<coor>& v);
-double myown(int num, vector<coor>& v, const string& dataset_name);
+double myown(int num, vector<coor>& v);
 double get_dist(coor& a, coor& b);
 
 std::string trim(const string& s) {
@@ -132,17 +131,9 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-// --- [추가할 부분] 파일명에서 데이터셋 이름 추출 ---
-    string dataset_name = tspfile;
-    size_t pos = dataset_name.find_last_of("/\\");
-    if (pos != string::npos) dataset_name = dataset_name.substr(pos + 1);
-    pos = dataset_name.find_last_of(".");
-    if (pos != string::npos) dataset_name = dataset_name.substr(0, pos);
-    
     // 시간 측정 시작
     auto start = chrono::steady_clock::now();
-    // 기존 myown(actual_count, v)를 아래처럼 교체
-    double result = myown(actual_count, v, dataset_name); 
+    double result = myown(actual_count, v);
     auto end = chrono::steady_clock::now();
     auto duration_ms = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -464,59 +455,27 @@ double calculate_cycle_length(vector<coor>& path) {
     return total;
 }
 
-double myown(int num, vector<coor>& v, const string& dataset_name) {
-    string out_filename = "myown_" + dataset_name + ".txt";
-    ofstream viz_out(out_filename);
-
+double myown(int num, vector<coor>& v) {
     vector<vector<coor>> layers = divide_layers(v);
     if (layers.empty()) return 0;
-
-    // [과정 1] 최외곽부터 Convex Hull 생성 과정 (현재: 파랑 0, 완료: 회색 1)
-    for (size_t i = 0; i < layers.size(); ++i) {
-        viz_out << "FRAME: Building Convex Hull Layer " << (i + 1) << "\n";
-        // 이미 완성된 바깥쪽 레이어들은 회색(1)
-        for (size_t j = 0; j < i; ++j) {
-            for (size_t k = 0; k + 1 < layers[j].size(); ++k) {
-                viz_out << layers[j][k].x << " " << layers[j][k].y << " " << layers[j][k+1].x << " " << layers[j][k+1].y << " 1\n";
-            }
-        }
-        // 지금 당장 만들고 있는 레이어는 파란색(0)
-        for (size_t k = 0; k + 1 < layers[i].size(); ++k) {
-            viz_out << layers[i][k].x << " " << layers[i][k].y << " " << layers[i][k+1].x << " " << layers[i][k+1].y << " 0\n";
-        }
-        viz_out << "\n";
-    }
-
+    
     vector<coor> tsp_path = layers[layers.size()-1];
     layers.pop_back();
-
-    // [과정 2] 내부 레이어부터 확장하며 Merge (현재 경로: 파랑 0, 대기 중인 외부 레이어: 회색 1)
     for (int i = layers.size()-1; i > -1; i--) {
         merge_layer(tsp_path, layers[i]);
-        
-        viz_out << "FRAME: Merging Outward (Layer " << (layers.size() - i) << ")\n";
-        // 현재까지 확장(Merge) 완료된 경로는 파란색(0)
-        for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-            viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 0\n";
-        }
-        
-        // 아직 병합을 기다리는 바깥쪽 레이어들은 회색(1)으로 유지
-        for (int k = i - 1; k > -1; k--) {
-            for (size_t j = 0; j + 1 < layers[k].size(); ++j) {
-                viz_out << layers[k][j].x << " " << layers[k][j].y << " " << layers[k][j+1].x << " " << layers[k][j+1].y << " 1\n";
-            }
-        }
-        viz_out << "\n";
     }
 
-    // [과정 3] 최종 완성 (보라 3)
-    viz_out << "FRAME: Final TSP Path\n";
-    for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-        viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 3\n";
-    }
-    viz_out << "\n";
-
-    viz_out.close();
+    // tsp_path.pop_back();
+    // for (int i = 0; i < (int)tsp_path.size(); i++) {
+    //     for (int j = i+1; j < (int)tsp_path.size(); j++) {
+    //         if (get_dist(tsp_path[i], tsp_path[(i+1) % (int)tsp_path.size()]) + get_dist(tsp_path[j], tsp_path[(j+1) % (int)tsp_path.size()])
+    //          > get_dist(tsp_path[i], tsp_path[j]) + get_dist(tsp_path[(i+1) % (int)tsp_path.size()], tsp_path[(j+1) % (int)tsp_path.size()])) {
+    //             reverse(tsp_path.begin() + i + 1, tsp_path.begin() + j + 1);
+    //         }
+    //     }
+    // }
+    // tsp_path.emplace_back(tsp_path[0]);
+    
     return calculate_cycle_length(tsp_path);
 }
 

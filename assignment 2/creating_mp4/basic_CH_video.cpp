@@ -33,9 +33,7 @@ struct coor {
 };
 const double INF = numeric_limits<double>::max();
 
-double basic_CH(int num, vector<coor>& v, const string& dataset_name);
-// 기존 prim을 아래처럼 교체
-vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m, ofstream& viz_out);
+double basic_CH(int num, vector<coor>& v);
 double get_dist(coor& a, coor& b);
 
 std::string trim(const string& s) {
@@ -133,17 +131,9 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
-// --- [추가할 부분] 파일명에서 데이터셋 이름 추출 ---
-    string dataset_name = tspfile;
-    size_t pos = dataset_name.find_last_of("/\\");
-    if (pos != string::npos) dataset_name = dataset_name.substr(pos + 1);
-    pos = dataset_name.find_last_of(".");
-    if (pos != string::npos) dataset_name = dataset_name.substr(0, pos);
-    
     // 시간 측정 시작
     auto start = chrono::steady_clock::now();
-    // basic_CH 함수에 dataset_name을 추가로 넘겨줍니다.
-    double result = basic_CH(actual_count, v, dataset_name); 
+    double result = basic_CH(actual_count, v);
     auto end = chrono::steady_clock::now();
     auto duration_ms = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
@@ -167,7 +157,7 @@ double get_dist(coor& a, coor& b) {
 }
 
 
-vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m, ofstream& viz_out) {
+vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m) {
     double sum = 0;
     vector<pair<coor, coor>> ans;
 
@@ -192,15 +182,6 @@ vector<pair<coor, coor>> prim(int num, vector<coor>& v, map<coor, int>& m, ofstr
         }
         ans.push_back({v[get<1>(pv[mindex])], v[get<2>(pv[mindex])]});
         // console << ans.size() << " : " << get<1>(pv[mindex]).x << " " << get<1>(pv[mindex]).y << " <=> " << get<2>(pv[mindex]).x << " " << get<2>(pv[mindex]).y << "\n" << flush;
-        
-        // --- [추가 부분] ---
-        viz_out << "FRAME: MST Formation\n";
-        for (const auto& e : ans) {
-            viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 0\n"; // 파란색(0)
-        }
-        viz_out << "\n";
-        // -------------------
-        
         sum += get<0>(pv[mindex]);
         m[v[get<1>(pv[mindex])]]++;
         m[v[get<2>(pv[mindex])]]++;
@@ -1334,36 +1315,29 @@ vector<coor> eulercircuit(vector<vector<coor>> (&ntn)) {
 
 // vector<pair<coor, coor>> anotherprim(int num, vector<coor>& v, map<coor, int>& m);       // for debugging
 
-double basic_CH(int num, vector<coor>& v, const string& dataset_name) {
-    string out_filename = "basic_CH_" + dataset_name + ".txt";
-    ofstream viz_out(out_filename);
-
-    map<coor, int> m;
-    // 과정 1: MST 생성 (내부에서 파란색 출력)
-    vector<pair<coor, coor>> mst = prim(num, v, m, viz_out);
+double basic_CH(int num, vector<coor>& v) {
+    map<coor, int> m;        // to check if number of nodes connected is odd & save memory -> exchange, time consuming
+    vector<pair<coor, coor>> mst = prim(num, v, m);
+    // anotherprim(num, v, m);
+    // console << mst.size() << " = " << num-1 << "\n";
 
     vector<coor> odds;
     for (int i = 0; i < num; i++) {
-        if (m[v[i]] % 2 != 0) odds.emplace_back(v[i]);
+        if (m[v[i]] % 2 != 0)
+            odds.emplace_back(v[i]);
     }
-    
+    // console << odds.size() << endl;
+
     vector<pair<coor, coor>> pm = mwpm(odds);
 
-    // [과정 2] MWPM 생성 (MST: 회색 1, MWPM: 초록 2로 하나씩 추가)
-    vector<pair<coor, coor>> current_matching;
-    for (const auto& pme : pm) {
-        current_matching.push_back(pme);
-        viz_out << "FRAME: Finding Minimum Weight Perfect Matching\n";
-        for (const auto& e : mst) {
-            viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 1\n"; // 뼈대 MST는 회색(1)
-        }
-        for (const auto& e : current_matching) {
-            viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 2\n"; // 매칭선은 초록(2)
-        }
-        viz_out << "\n";
-    }
+    // double tmpsum = 0;
+    // for (int i = 0; i < (int)pm.size(); i++) {
+    //     console << "(" << pm[i].first.x << ", " << pm[i].first.y << ")" << ",  (" << pm[i].second.x << ", " << pm[i].second.y << ")" << endl;
+    //     tmpsum += get_dist(pm[i].first, pm[i].second);
+    // }
+    // console << "minimum cost perfect matching cost : " << tmpsum << endl;
 
-    // 인접 리스트 생성
+    // make adjacency vector (node to node), use coor.index for mapping
     vector<vector<coor>> ntn(mst.size() + pm.size() + 1);
     for (int i = 0; i < (int)mst.size(); i++) {
         ntn[mst[i].second.index].emplace_back(mst[i].first);
@@ -1373,7 +1347,7 @@ double basic_CH(int num, vector<coor>& v, const string& dataset_name) {
         ntn[pm[i].second.index].emplace_back(pm[i].first);
         ntn[pm[i].first.index].emplace_back(pm[i].second);
     }
-    
+
     vector<coor> ec = eulercircuit(ntn);
     ntn.clear();
     int visited[mst.size() + pm.size() + 1] = {};
@@ -1381,49 +1355,14 @@ double basic_CH(int num, vector<coor>& v, const string& dataset_name) {
     double chtotal = 0;
     coor recent = ec[0];
     visited[recent.index] = 1;
-    vector<coor> tsp_path;
-    tsp_path.push_back(recent);
-
-    // [과정 3] 오일러 회로 숏컷 탐색 (배경: 회색 1, 탐색 경로: 파랑 0)
-    // [과정 3] 오일러 회로 숏컷 탐색 
     for (int i = 1; i < (int)ec.size(); i++) {
         if (!(visited[ec[i].index])) {
             visited[ec[i].index] = 1;
             chtotal += get_dist(recent, ec[i]);
             recent = ec[i];
-            tsp_path.push_back(recent);
-
-            viz_out << "FRAME: Euler Circuit Shortcut (Using MWPM Bridges)\n";
-            
-            // 1. 뼈대인 MST는 회색(1)으로 출력
-            for (const auto& e : mst) {
-                viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 1\n";
-            }
-            // 2. [핵심 포인트!] MWPM 매칭선은 초록색(2)으로 계속 살려둡니다.
-            // 이렇게 하면 파란색 숏컷 선이 초록색 다리를 타고 다른 트리 가지로 건너뛰는 것을 눈으로 볼 수 있습니다!
-            for (const auto& e : pm) {
-                viz_out << e.first.x << " " << e.first.y << " " << e.second.x << " " << e.second.y << " 2\n";
-            }
-            
-            // 3. 현재 뻗어나가는 오일러 회로 숏컷 경로는 파란색(0)
-            for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-                viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 0\n";
-            }
-            viz_out << "\n";
         }
-        if (i == (int)ec.size()-1) {
-            chtotal += get_dist(recent, ec[0]);
-            tsp_path.push_back(ec[0]);
-            
-            // [과정 4] 최종 완성 시에는 모두 깔끔하게 보라색(3)으로 통일!
-            viz_out << "FRAME: Final TSP Path\n";
-            for (size_t j = 0; j + 1 < tsp_path.size(); ++j) {
-                viz_out << tsp_path[j].x << " " << tsp_path[j].y << " " << tsp_path[j+1].x << " " << tsp_path[j+1].y << " 3\n";
-            }
-            viz_out << "\n";
-        }
+        if (i == (int)ec.size()-1) chtotal += get_dist(recent, ec[0]);
     }
-    viz_out.close();
     return chtotal;
 }
 
