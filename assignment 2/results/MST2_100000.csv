@@ -1,0 +1,6 @@
+Algorithm,TSPFile,StartIndex,Count,AverageTime(ms),AverageMemory(MB),AverageResult
+MST2,a280.tsp,0,280,0,3.75,3572
+MST2,xql662.tsp,0,662,2,3.88,3547
+MST2,kz9976.tsp,0,9976,493,7.47,1457293
+MST2,mona-lisa100K.tsp,0,100000,44267.5,40.34,8322297
+MST2,it16862.tsp,0,16862,1176,10.44,766671

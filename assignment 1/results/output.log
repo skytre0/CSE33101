@@ -1,0 +1,1043 @@
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.83MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.93MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.85MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.79MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.92MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.80MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.92MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.91MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.92MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.79MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.91MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.91MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.79MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.84MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.79MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.83MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.91MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.79MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.91MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.83MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.93MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.75MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.78MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 3.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 3.00ms | Memory: 6.87MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 3.00ms | Memory: 6.94MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 3.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 3.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 3.00ms | Memory: 8.81MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 3.00ms | Memory: 6.96MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 4.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 3.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 3.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 2.00ms | Memory: 6.83MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 2.00ms | Memory: 6.81MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 2.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 2.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 3.00ms | Memory: 6.85MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 3.00ms | Memory: 6.80MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 4.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 2.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 4.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 2.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 3.00ms | Memory: 6.95MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 2.00ms | Memory: 6.94MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 4.00ms | Memory: 6.80MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 4.00ms | Memory: 6.84MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 2.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 2.00ms | Memory: 6.96MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 2.00ms | Memory: 6.83MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 3.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 2.00ms | Memory: 6.96MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 3.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 4.00ms | Memory: 6.82MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 2.00ms | Memory: 6.96MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 2.00ms | Memory: 6.84MB
+---------------------------------------------------
+Algorithm: heap_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 2.00ms | Memory: 6.87MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.24MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.60MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.23MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.55MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.60MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.46MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.66MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.63MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.17MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.22MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.52MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 10.94MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 9.22MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 10.98MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 11.07MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 9.29MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 10.94MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 9.32MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 9.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 9.29MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 9.31MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 9.31MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 9.30MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 9.33MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 9.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 9.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 9.45MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 11.15MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 9.34MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 11.18MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 11.11MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 11.11MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 11.12MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 11.06MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 9.35MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 9.31MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 9.37MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 11.09MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 11.05MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 11.17MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 9.36MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 10.95MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 11.13MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 11.15MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 9.43MB
+---------------------------------------------------
+Algorithm: merge_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 9.33MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.53MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.15MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.53MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.51MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.54MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.17MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.26MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.51MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.17MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.55MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.55MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.38MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.38MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.51MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.54MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.26MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.53MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.12MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.51MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.55MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.68MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.86MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.47MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.97MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.61MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.63MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.65MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.62MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.77MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.66MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.61MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.70MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.84MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.85MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.65MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.73MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.89MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.89MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.98MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.52MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.62MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.63MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 8.64MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.77MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.54MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.88MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.66MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.87MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.73MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.68MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.51MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.89MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.52MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.60MB
+---------------------------------------------------
+Algorithm: quick_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.97MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.43MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.20MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.50MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.21MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.50MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.22MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.20MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.37MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.20MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.24MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.44MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.18MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.43MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.44MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.66MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.52MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: selection_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.41MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.19MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.26MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.36MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.25MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.45MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.26MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.55MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.50MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.43MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.45MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.37MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.63MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.74MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.37MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.12MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.58MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: bubble_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.45MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.39MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.37MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.44MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.47MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.43MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.42MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.49MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.21MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.48MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.20MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.38MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.72MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: ascending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.71MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.61MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.64MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.63MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: descending | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.52MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 6.74MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.66MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 6.60MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 8.33MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.63MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.35MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 2 | Time: 0.00ms | Memory: 6.59MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 3 | Time: 0.00ms | Memory: 8.37MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 4 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 5 | Time: 0.00ms | Memory: 6.63MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 6 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 7 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 8 | Time: 0.00ms | Memory: 8.29MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 9 | Time: 0.00ms | Memory: 6.62MB
+---------------------------------------------------
+Algorithm: insertion_sort | Input Type: part-random | Data Size: 10k | Run: 10 | Time: 0.00ms | Memory: 6.73MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.55MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.37MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.53MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.66MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.24MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.58MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.32MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.54MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 8.27MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.67MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.67MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.67MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: descending | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.26MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 6.54MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 6.66MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 6.68MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 6.54MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.31MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.46MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.68MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 1 | Time: 0.00ms | Memory: 8.16MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 2 | Time: 0.00ms | Memory: 8.28MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 3 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 4 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 5 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 6 | Time: 0.00ms | Memory: 8.34MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 7 | Time: 0.00ms | Memory: 6.57MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 8 | Time: 0.00ms | Memory: 8.30MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 9 | Time: 0.00ms | Memory: 6.52MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: part-random | Data Size: 1k | Run: 10 | Time: 0.00ms | Memory: 6.56MB
+---------------------------------------------------
+Algorithm: tournament_sort | Input Type: ascending | Data Size: 10k | Run: 1 | Time: 0.00ms | Memory: 8.78MB
+---------------------------------------------------
+Algori

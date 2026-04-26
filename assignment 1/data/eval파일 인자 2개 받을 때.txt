@@ -1,0 +1,212 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <chrono>
+#include <sys/stat.h>
+#include <iomanip>
+#include <algorithm>
+#include <filesystem>
+#include <unistd.h> // getpid() 사용을 위해 추가
+
+namespace fs = std::filesystem;
+
+struct RunResult {
+    double time_ms;   // 실행 시간 (밀리초)
+    double memory_mb; // 메모리 사용량 (MB)
+};
+
+void execute(const std::string& program, const std::string& input_file,
+            const std::string& output_file, RunResult& result) {
+    // 프로그램 출력을 임시 파일로 리다이렉션
+    std::string temp_output_file = "temp_output.txt";
+    std::string command = program + " ./tests/" + input_file + " > " + temp_output_file;
+    
+    // 메모리 측정은 그대로 유지
+    std::string time_command = "/usr/bin/time -f \"%M\" -o temp_mem.txt " + command;
+    
+    // 프로그램 실행
+    int ret_code = std::system(time_command.c_str());
+    
+    if (ret_code != 0) {
+        std::cerr << "Error: Failed to execute " << program << "\n";
+        exit(EXIT_FAILURE);
+    }
+    
+    // 표준 출력에서 ALGORITHM_TIME_MS 값 파싱
+    std::ifstream output_file_stream(temp_output_file);
+    if (!output_file_stream.is_open()) {
+        std::cerr << "Error: Failed to open " << temp_output_file << "\n";
+        exit(EXIT_FAILURE);
+    }
+    
+    std::string line;
+    double algorithm_time = -1.0; // 기본값 설정
+    
+    while (std::getline(output_file_stream, line)) {
+        if (line.find("ALGORITHM_TIME_MS:") != std::string::npos) {
+            // "ALGORITHM_TIME_MS:" 다음에 오는 숫자를 추출
+            std::string time_str = line.substr(line.find(":") + 1);
+            // 문자열 앞뒤 공백 제거
+            time_str.erase(0, time_str.find_first_not_of(" \t"));
+            time_str.erase(time_str.find_last_not_of(" \t") + 1);
+            
+            try {
+                algorithm_time = std::stod(time_str);
+            } catch (const std::exception& e) {
+                std::cerr << "Error: Failed to parse time value: " << time_str << "\n";
+            }
+            break;
+        }
+    }
+    
+    output_file_stream.close();
+    
+    // temp_mem.txt 파일에서 메모리 읽기 (기존 코드 유지)
+    std::ifstream mem_file("temp_mem.txt");
+    if (!mem_file.is_open()) {
+        std::cerr << "Error: Failed to open temp_mem.txt\n";
+        exit(EXIT_FAILURE);
+    }
+    
+    long memory_kb;
+    mem_file >> memory_kb;
+    mem_file.close();
+    
+    // 결과 저장 - 알고리즘 자체 측정 시간 사용
+    result.time_ms = algorithm_time;
+    result.memory_mb = memory_kb / 1024.0; // KB -> MB 변환
+    
+    // 임시 파일 삭제
+    fs::remove("temp_mem.txt");
+    fs::remove(temp_output_file);
+}
+
+
+void createDirectory(const std::string& path) {
+    if (!fs::exists(path)) {
+        fs::create_directory(path);
+    }
+}
+
+void runProgram(const std::string& program, const std::string& input_arg, 
+                const std::string& output_arg, const std::string& csv_file, int run,
+                std::vector<double>& times, std::vector<double>& memories) {
+    RunResult result{0.0, 0.0};
+    execute(program, input_arg, output_arg, result);
+
+    // 입력 파일 이름에서 데이터 타입 및 크기 추출
+    std::string input_base = input_arg.substr(0, input_arg.find(".txt"));
+    size_t last_hyphen = input_base.rfind('-');
+    std::string input_type = input_base.substr(0, last_hyphen);
+    std::string data_size = input_base.substr(last_hyphen + 1);
+
+    // 실행 결과 출력
+    std::cout << "Algorithm: " << program.substr(2)
+              << " | Input Type: " << input_type
+              << " | Data Size: " << data_size
+              << " | Run: " << run
+              << " | Time: " << std::fixed << std::setprecision(2) 
+              << result.time_ms << "ms"
+              << " | Memory: " << std::fixed << std::setprecision(2) 
+              << result.memory_mb << "MB\n";
+
+    // 시간과 메모리 목록에 추가
+    times.push_back(result.time_ms);
+    memories.push_back(result.memory_mb);
+}
+
+void writeAverageToCSV(const std::string& program, const std::string& input_arg, 
+                       const std::string& output_arg, const std::string& csv_file,
+                       const std::vector<double>& times, const std::vector<double>& memories) {
+    // 입력 파일 이름에서 데이터 타입 및 크기 추출
+    std::string input_base = input_arg.substr(0, input_arg.find(".txt"));
+    size_t last_hyphen = input_base.rfind('-');
+    std::string input_type = input_base.substr(0, last_hyphen);
+    std::string data_size = input_base.substr(last_hyphen + 1);
+
+    // 평균값 계산
+    double sum_time = 0.0;
+    double sum_memory = 0.0;
+    for (const auto& time : times) {
+        sum_time += time;
+    }
+    for (const auto& memory : memories) {
+        sum_memory += memory;
+    }
+    double avg_time = sum_time / times.size();
+    double avg_memory = sum_memory / memories.size();
+
+    // CSV 파일에 결과 기록
+    std::ofstream csv(csv_file, std::ios_base::app);
+    if (csv.tellp() == 0) { // 파일이 비어 있을 때 헤더 추가
+        csv << "Algorithm,InputType,DataSize,AverageTime(ms),AverageMemory(MB)\n";
+    }
+    csv << program.substr(2) << ","  // "./" 제거
+        << input_type << ","
+        << data_size << ","
+        << std::fixed << std::setprecision(2) << avg_time << ","
+        << std::fixed << std::setprecision(2) << avg_memory << "\n";
+}
+
+int main() {
+    // 실행할 프로그램 목록과 입력/출력 파일 목록 정의
+    std::vector<std::string> progs = {
+        "./heap_sort", 
+        "./merge_sort", 
+        "./quick_sort", 
+        "./selection_sort", 
+        "./bubble_sort", 
+        "./insertion_sort", 
+        "./tournament_sort", 
+        "./comb_sort", 
+        "./cocktail_shaker_sort", 
+        "./introsort", 
+        "./library_sort", 
+        "./tim_sort"
+    };
+
+    std::vector<std::pair<std::string, std::string>> args = {
+        // {"ascending-1k.txt", "output-1k.txt"},
+        // {"descending-1k.txt", "output-1k.txt"},
+        // {"random-1k.txt", "output-1k.txt"},
+        // {"part-random-1k.txt", "output-1k.txt"},
+        // {"ascending-10k.txt", "output-10k.txt"},
+        // {"descending-10k.txt", "output-10k.txt"},
+        // {"random-10k.txt", "output-10k.txt"},
+        // {"part-random-10k.txt", "output-10k.txt"},
+        {"ascending-100k.txt", "output-100k.txt"},
+        {"descending-100k.txt", "output-100k.txt"},
+        {"random-100k.txt", "output-100k.txt"},
+        {"part-random-100k.txt", "output-100k.txt"},
+        // {"ascending-1m.txt", "output-1m.txt"},
+        // {"descending-1m.txt", "output-1m.txt"},
+        // {"random-1m.txt", "output-1m.txt"},
+        // {"part-random-1m.txt", "output-1m.txt"}
+    };
+
+    int n = 10; // 각 프로그램당 실행 횟수
+    // 결과를 저장할 디렉토리 생성
+    std::string output_dir = "results_" + std::to_string(
+        std::chrono::system_clock::now().time_since_epoch().count());
+    createDirectory(output_dir);
+
+    // CSV 파일 경로 설정
+    std::string csv_file = output_dir + "/results.csv";
+
+    for (const auto& prog : progs) { // 정렬 알고리즘 반복
+        for (const auto& [input_arg, output_arg] : args) { // 입력/출력 파일 반복
+            std::vector<double> times;
+            std::vector<double> memories;
+
+            for (int i = 0; i < n; i++) { // 실행 횟수 반복
+                runProgram(prog, input_arg, output_arg, csv_file, i + 1, times, memories);
+                std::cout << "---------------------------------------------------\n";
+            }
+
+            writeAverageToCSV(prog, input_arg, output_arg, csv_file, times, memories);
+        }
+    }
+
+    return 0;
+}
