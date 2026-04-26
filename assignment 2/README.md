@@ -55,6 +55,3 @@ You can execute specific TSP algorithms manually by providing the TSP file path 
   - `tsp_file_path`: Path to the `.tsp` file (e.g., `../data/a280.tsp`).
   - `start_index`: The starting city index (usually `0`).
   - `num_nodes`: Number of cities to process from the file.
-
-### 4. Special Dependencies
-- **Blossom5:** Some MST-based or matching-related implementations may require the Blossom5 library, which is included as a `.tar.gz` in the `src` directory and should be extracted/built if needed for specific advanced features.
