@@ -1,5 +1,0 @@
-ALGORITHM_TIME_MS:2
-RESULT:10309.0000000000
-Number of inputs (used): 194
-Start index: 0
-Vector size: 0
